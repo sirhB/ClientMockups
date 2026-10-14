@@ -1,5 +1,5 @@
 (function(){
-var THEMES=[["01-noir-cinema", "Noir Cinema"], ["02-pit-lane", "Pit Lane"], ["03-white-cube", "White Cube"], ["04-still-frame", "Still Frame"], ["05-the-catalogue", "The Catalogue"]],KEY='ccg-theme',page=document.documentElement.dataset.page;
+var THEMES=[["01-noir-cinema", "Noir Cinema"], ["02-pit-lane", "Pit Lane"], ["03-white-cube", "White Cube"], ["04-still-frame", "Still Frame"], ["05-the-catalogue", "The Catalogue"]],KEY='ccg-theme',page=document.documentElement.dataset.page,BASE=document.documentElement.dataset.base||'';
 function cur(){var q=new URLSearchParams(location.search).get('theme');if(q&&THEMES.some(function(t){return t[0]==q}))return q;try{return localStorage.getItem(KEY)||THEMES[0][0]}catch(e){return THEMES[0][0]}}
 function apply(id){
  try{localStorage.setItem(KEY,id)}catch(e){}
@@ -10,9 +10,9 @@ function apply(id){
  var lb=document.querySelector('.ts .tg');if(lb)lb.textContent='◐ Theme: '+THEMES.find(function(t){return t[0]==id})[1];
 }
 function wire(){
- var MAP={'inventory':'inventory.html','recently sold':'inventory.html','services':'contact.html','about':'contact.html','contact':'contact.html'};
- document.querySelectorAll('.nv span, .nv b.lg').forEach(function(el){var t=el.textContent.trim().toLowerCase();var href=el.classList.contains('lg')?'index.html':(MAP[t]||(el.classList.contains('cta')?'tel:2032569800':null));if(href){el.style.cursor='pointer';el.setAttribute('role','link');el.tabIndex=0;el.addEventListener('click',function(){location.href=href})}});
- document.querySelectorAll('.T [style*="inv/disp"]').forEach(function(el){if(page==='detail')return;el.style.cursor='pointer';el.addEventListener('click',function(){location.href='detail.html'})});
+ var MAP={'inventory':'inventory.html','recently sold':'inventory.html','services':'contact.html','about':'contact.html','contact':'contact.html','pay invoice':'pay/index.html'};
+ document.querySelectorAll('.nv span, .nv b.lg').forEach(function(el){var t=el.textContent.trim().toLowerCase();var href=el.classList.contains('lg')?BASE+'index.html':(MAP[t]?BASE+MAP[t]:(el.classList.contains('cta')?'tel:2032569800':null));if(href){el.style.cursor='pointer';el.setAttribute('role','link');el.tabIndex=0;el.addEventListener('click',function(){location.href=href})}});
+ document.querySelectorAll('.T [style*="inv/disp"]').forEach(function(el){if(page==='detail')return;el.style.cursor='pointer';el.addEventListener('click',function(){location.href=BASE+'detail.html'})});
 }
 var w=document.createElement('div');w.className='ts';
 w.innerHTML='<div class="pn" role="menu">'+THEMES.map(function(t){return '<button data-id="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><button class="tg" aria-haspopup="true"></button>';

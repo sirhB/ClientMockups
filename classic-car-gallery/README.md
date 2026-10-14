@@ -9,7 +9,8 @@ This is a static redesign prototype built with plain HTML, CSS and vanilla JS. I
 | Home | `index.html` |
 | Inventory | `inventory.html` |
 | Vehicle detail | `detail.html` |
-| Contact & services | `contact.html` |
+| Contact & services (+ service enquiry form) | `contact.html` |
+| Invoice payment | `pay/index.html?invoice=INV-1042` |
 
 ## Design directions (themes)
 1. **Noir Cinema** (`01-noir-cinema`): dark letterboxed hero, Bodoni display type, a "Now Showing" car strip.
@@ -39,3 +40,16 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder.
 - These are **design proposals** and not real yet: the contact/appointment forms, inventory filters, the Catalogue's "condition report" button, and decorative labels such as Lot numbers and video timecodes.
 - Inventory is a static snapshot. A production build should pull it from the client's inventory data.
 - Mobile/tablet layouts are a responsive adaptation. The comps were designed at 1440px.
+
+## Services (as confirmed by the client)
+Consignment · Appraisals · Secure auto-storage · Transport services · Financing & insurance · Location services · Full-service detailing & finishing (interior and exterior).
+These appear in each theme's home-page services section and on `contact.html`, which also has the **service enquiry form** with a service dropdown. `contact.html?service=Appraisals` pre-selects a service.
+
+## Forms & payments (Stripe-ready placeholders, no keys)
+- `assets/js/config.js` holds all configuration. Look for the `STRIPE` markers.
+  - `forms.enquiryEndpoint` is `null`, so the enquiry form runs in demo mode. Set it to a form backend URL to make it live.
+  - `payments.enabled` is `false`. Set `mode` to `"checkout"` (needs a server endpoint that creates a Stripe Checkout Session with the secret key and returns `{url}`) or to `"paymentLink"` (map invoice IDs or services to `https://buy.stripe.com/...` links).
+  - `payments.serviceDeposits` takes optional per-service deposits in cents. When set, a "Pay deposit" button appears on the enquiry form.
+  - **Never commit a secret (`sk_`) key.** `publishableKey` is a `pk_test_REPLACE_ME` placeholder.
+- `assets/js/payments.js` provides `CCGPayments.start({kind, reference, amount, description, email})`, the single hook used by the deposit button and the invoice page.
+- `pay/index.html`: invoice lookup and summary, with a Pay button wired to the hook. Demo data comes from `data/invoices.json` (**fake placeholder invoices: INV-1042 open, INV-1043 paid**). Replace this with a server-side lookup. Use an HTTP server for this page (`fetch` doesn't work from `file://`). It handles `?status=success|cancelled` return URLs.
