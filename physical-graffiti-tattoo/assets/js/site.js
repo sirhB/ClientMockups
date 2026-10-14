@@ -1,0 +1,18 @@
+(function(){
+var H=document.documentElement,TH=window.THEMES||[],K=window.TKEY||'theme';
+function apply(id){H.dataset.theme=id;try{localStorage.setItem(K,id)}catch(e){}document.querySelectorAll('.ts .pn button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.id===id)});var t=TH.find(function(x){return x[0]==id});var g=document.querySelector('.ts .tg');if(g&&t)g.textContent='◐ Theme: '+t[1]}
+var w=document.createElement('div');w.className='ts';w.innerHTML='<div class="pn">'+TH.map(function(t){return '<button type="button" data-id="'+t[0]+'">'+t[1]+'</button>'}).join('')+'</div><button type="button" class="tg"></button>';document.body.appendChild(w);
+w.querySelector('.tg').onclick=function(){w.classList.toggle('open')};w.querySelectorAll('.pn button').forEach(function(b){b.onclick=function(){apply(b.dataset.id);w.classList.remove('open')}});
+if(!TH.some(function(t){return t[0]==H.dataset.theme}))H.dataset.theme=TH[0][0];apply(H.dataset.theme);
+var bg=document.querySelector('.burger'),hd=document.querySelector('.hd');if(bg)bg.onclick=function(){var o=hd.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+document.querySelectorAll('.demo-form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();var o=f.querySelector('.ok');if(o)o.hidden=false})});
+document.querySelectorAll('[data-filter]').forEach(function(b){b.onclick=function(){var v=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(function(x){x.classList.toggle('on',x===b)});document.querySelectorAll('[data-tags]').forEach(function(el){el.hidden=v&&el.dataset.tags.indexOf(v)<0})}});
+var C=window.CARS;if(!C)return;
+function card(c){return '<a class="car" href="detail.html?id='+c.id+'"><div class="ph"><img src="assets/img/'+c.img+'" alt="'+c.y+' '+c.mk+' '+c.md+'" loading="lazy"><span class="smp">Sample</span></div><div class="cb"><h3>'+c.y+' '+c.mk+' '+c.md+'</h3><p class="mu">'+c.body+' · XX,XXX mi</p><div class="pr"><span><small>Est.</small> $XXX/mo</span><b>$XX,XXX</b></div></div></a>'}
+var g=document.getElementById('inv-grid'),fb=document.getElementById('f-body'),fm=document.getElementById('f-make');
+function run(){g.innerHTML=C.filter(function(c){return(!fb.value||c.body==fb.value)&&(!fm.value||c.mk==fm.value)}).map(card).join('')||'<p class="mu">No sample vehicles match. Try the car finder.</p>'}
+if(g&&fb){fb.onchange=fm.onchange=run}
+var v=document.getElementById('vdp');if(v){var id=new URLSearchParams(location.search).get('id'),c=C.find(function(x){return x.id==id})||C[0];document.title=c.y+' '+c.mk+' '+c.md+' · Hurd Auto Sales';
+v.innerHTML='<div class="gal"><div class="main"><img src="assets/img/'+c.img+'" alt="'+c.y+' '+c.mk+' '+c.md+'"><span class="smp">Sample listing</span></div><div class="thumbs"><img src="assets/img/'+c.img+'" alt=""><img src="assets/img/stock-04.jpg" alt="Interior (sample photo)"></div></div><div class="info"><span class="k">'+c.body+' · Stock #SAMPLE</span><h1>'+c.y+' '+c.mk+' '+c.md+'</h1><div class="price">$XX,XXX</div><p class="mu">or est. $XXX/mo with credit-union financing*</p><dl class="specs"><div><dt>Mileage</dt><dd>XX,XXX</dd></div><div><dt>Transmission</dt><dd>Automatic</dd></div><div><dt>Body</dt><dd>'+c.body+'</dd></div><div><dt>Warranty</dt><dd>6 mo – 5 yr options</dd></div></dl><div class="btns"><a class="btn" href="contact.html">Check availability</a><a class="btn alt" href="financing.html">Get pre-approved</a></div><p class="mu" style="font-size:13px;margin-top:14px">*Sample vehicle and placeholder pricing. Stock photo, not the actual car.</p></div>';
+var s=document.getElementById('similar');if(s)s.innerHTML=C.filter(function(x){return x.id!=c.id}).slice(0,4).map(card).join('')}
+})();
