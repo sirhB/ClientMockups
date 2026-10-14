@@ -1,0 +1,28 @@
+{
+  "business": {
+    "name": "Shearwater Organic Coffee Roasters",
+    "address": "100 Corporate Drive, Unit B106 (rear building), Trumbull, CT 06611",
+    "phone": "203-880-9565",
+    "hours": "Mon–Fri 10 am – 4 pm · Closed weekends",
+    "tagline": "Renew the Earth, Restore Your Energy.",
+    "quote": "It's a way of life, not a product line.",
+    "founder": "Ed Freedman",
+    "founded": 2013,
+    "note": "Coffee bars in Fairfield and Westport have closed. Visit the Trumbull roastery counter."
+  },
+  "products": [
+    {"id":"coastal-sunrise","name":"Coastal Sunrise","origin":"Blend","taste":"Bright & sweet","price":14.99,"img":"Coastal-Sunrise-label_jpg-165x222.jpg","class":"Blend","brew":["Drip","Pour-over"]},
+    {"id":"sumatra-takengon","name":"Sumatra Takengon","origin":"Indonesia","taste":"Full-bodied, rich & rustic","price":14.99,"img":"Takengon-label_jpg.jpg","class":"Single-origin","brew":["Drip","French press"],"featured":true,"notes":{"Region":"Pantan Gayo co-op, Aceh","Altitude":"1,100–2,400 m","Process":"Semi-washed","Varietals":"Bergendahl, Djember, Ateng, Catimor & Jaya","Harvest":"June to December","Certified":"USDA Organic"}},
+    {"id":"dark-golden-crema","name":"Dark Golden Crema","origin":"Espresso blend","taste":"Espresso","price":15.99,"img":"Dark-Golden-Crema-label_jpg-165x222.jpg","class":"Espresso","brew":["Espresso"]},
+    {"id":"toasty-hearth","name":"Toasty Hearth","origin":"Blend","taste":"Dark roasted","price":14.99,"img":"Toasty-Hearth-label_jpg-165x222.jpg","class":"Blend","brew":["Drip","French press"]},
+    {"id":"healthy-harbor","name":"Healthy Harbor","origin":"Swiss Water decaf","taste":"Decaf blend","price":15.99,"img":"Healthy-Harbor-Wide_SWP-label-165x222.jpg","class":"Decaf","brew":["Drip","Pour-over"]},
+    {"id":"running-rapids","name":"Running Rapids","origin":"Cold brew blend","taste":"Cold brew","price":14.99,"img":"Running-Rapids-label-jpg-165x222.jpg","class":"Blend","brew":["Cold brew"]},
+    {"id":"guatemala-nahuala","name":"Guatemala Nahuala","origin":"Central America","taste":"Single-origin","price":14.99,"img":"Nahuala-label_jpg-165x222.jpg","class":"Single-origin","brew":["Pour-over","Drip"]},
+    {"id":"peru-penachi","name":"Peru Penachi","origin":"South America","taste":"Single-origin","price":14.99,"img":"Peru-Penachi-label_jpg-165x222.jpg","class":"Single-origin","brew":["Pour-over"]},
+    {"id":"brazil-fazenda","name":"Brazil Fazenda","origin":"South America","taste":"Single-origin","price":14.99,"img":"Brazil-Fazenda-label_jpg-165x222.jpg","class":"Single-origin","brew":["Drip","Espresso"]},
+    {"id":"colombia-popayan","name":"Colombia Popayán","origin":"South America","taste":"Single-origin","price":14.99,"img":"Popayan-label_jpg-165x222.jpg","class":"Single-origin","brew":["Pour-over"]},
+    {"id":"papua-new-guinea","name":"Papua New Guinea","origin":"Eastern Highlands","taste":"Single-origin","price":14.99,"img":"Papua-New-Guinea-165x222.jpg","class":"Single-origin","brew":["Drip"]},
+    {"id":"rwanda-kivu","name":"Rwanda Kivu","origin":"East Africa","taste":"Single-origin","price":15.99,"img":"Rwanda-Kivu-165x222.jpg","class":"Single-origin","brew":["Pour-over"]}
+  ],
+  "priceNote": "Prices shown are from the 2019 archived store and are placeholders until confirmed."
+}

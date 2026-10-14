@@ -1,0 +1,16 @@
+.T[data-theme="03-trade-counter"]{background:#14201c;color:#e9e4d8;font-family:'Libre Franklin',Inter,sans-serif}
+.T[data-theme="03-trade-counter"] .k{color:#d6a65a}.T[data-theme="03-trade-counter"] .btn{background:#d6a65a;color:#14201c;border-radius:4px}.T[data-theme="03-trade-counter"] .btn.o{border:1px solid #d6a65a;color:#d6a65a;background:0}
+.T[data-theme="03-trade-counter"] .nv{border-bottom:1px solid #2b3a34}.T[data-theme="03-trade-counter"] .lg span{font-family:'Frank Ruhl Libre',serif;font-size:26px;font-weight:700}.T[data-theme="03-trade-counter"] .lgo{display:none}
+.T[data-theme="03-trade-counter"] .hr{display:grid;grid-template-columns:1.1fr .9fr;gap:0}.T[data-theme="03-trade-counter"] .ht{padding:80px 48px}.T[data-theme="03-trade-counter"] .ht h1{font-family:'Frank Ruhl Libre',serif;font-weight:500;font-size:clamp(42px,6vw,84px);line-height:1;margin:18px 0}
+.T[data-theme="03-trade-counter"] .ht h1 em{color:#d6a65a;font-style:normal}.T[data-theme="03-trade-counter"] .ht p{color:#c4ccc6;font-size:18px;line-height:1.6;max-width:560px}
+.T[data-theme="03-trade-counter"] .hr>img{width:100%;height:100%;min-height:520px;object-fit:cover}
+.T[data-theme="03-trade-counter"] .pc{background:#1d2b26}.T[data-theme="03-trade-counter"] .who{border-top:1px solid #2b3a34;border-bottom:1px solid #2b3a34;padding:40px 28px}
+.T[data-theme="03-trade-counter"] .cy div{background:#1d2b26}.T[data-theme="03-trade-counter"] .cy .on{background:#d6a65a;color:#14201c}
+.T[data-theme="03-trade-counter"] .sx h2,.T[data-theme="03-trade-counter"] .ph h1,.T[data-theme="03-trade-counter"] .pdt h1{font-family:'Frank Ruhl Libre',serif;font-weight:500}
+.T[data-theme="03-trade-counter"] .fm input,.T[data-theme="03-trade-counter"] .fm textarea{background:#1d2b26;border-color:#2b3a34;color:#e9e4d8}
+.T[data-theme="03-trade-counter"] .ft{border-color:#2b3a34;color:#a9b3ac}
+.T[data-theme="03-trade-counter"] .pdi,.T[data-theme="03-trade-counter"] .nt div,.T[data-theme="03-trade-counter"] .pl>div{background:#1d2b26}
+.T[data-theme="03-trade-counter"] .pl .on{background:#d6a65a;color:#14201c}.T[data-theme="03-trade-counter"] .sg button{background:#1d2b26;border-color:#2b3a34;color:#e9e4d8}.T[data-theme="03-trade-counter"] .sg button.on{background:#d6a65a;color:#14201c;border-color:#d6a65a}
+.T[data-theme="03-trade-counter"] .flt button,.T[data-theme="03-trade-counter"] .ch a{background:#1d2b26;border-color:#2b3a34;color:#e9e4d8}
+.T[data-theme="03-trade-counter"] .fq details{border-color:#2b3a34}
+@media(max-width:900px){.T[data-theme="03-trade-counter"] .hr{grid-template-columns:1fr}}

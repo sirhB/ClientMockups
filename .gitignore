@@ -8,4 +8,6 @@ _build/
 **/mockups/
 **/mockups-r2/
 black-rock-animal-hospital/
-shearwater-coffee/
+shearwater-coffee/render/
+shearwater-coffee/research.md
+shearwater-coffee/gen_site.py
