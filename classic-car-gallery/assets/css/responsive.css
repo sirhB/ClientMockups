@@ -1,28 +1,61 @@
 
-html,body{overflow-x:hidden}
+html,body{overflow-x:hidden;max-width:100%}
+.T a[href^="tel:"],.T a[href^="mailto:"]{color:inherit;text-decoration:none}
+.nv-tg{display:none}
 @media (max-width:1100px){
- .T *{max-width:100%}
- .T [class]{grid-template-columns:1fr 1fr!important}
+ .T .nv .lk{gap:20px!important}
+ .T .h,.T .dh,.T .ch,.T .cv,.T .sp,.T .split{grid-template-columns:1fr!important}
+ .T .g,.T .lots,.T .xs-g,.T .sv,.T .pit,.T .tel,.T .spx,.T .sl,.T .dg{grid-template-columns:repeat(2,1fr)!important}
 }
 @media (max-width:760px){
- .T [class]{grid-template-columns:1fr!important;grid-column:auto!important;grid-row:auto!important}
- .T h1{font-size:clamp(42px,13vw,96px)!important;line-height:.95!important}
- .T h2{font-size:clamp(30px,9vw,60px)!important}
- .T .nv{flex-wrap:wrap;padding:20px!important;gap:10px}
- .T .nv .lk{order:3;width:100%;overflow-x:auto;gap:18px!important;font-size:11px}
- .T .nv .cta{margin-left:auto!important}
- .T section,.T .ft,.T .hd,.T .hh,.T .q,.T .ab,.T .ex,.T .st,.T .sv,.T .tx{padding-left:20px!important;padding-right:20px!important}
- .T [style*='height:'],.T .i,.T .im{min-height:240px}
- .T .strip{flex-wrap:nowrap;overflow-x:auto;padding-left:20px!important}
- .T .strip .c{flex-basis:80vw!important}
- .T .h,.T .dh,.T .cv,.T .ch{height:auto!important;min-height:0!important;clip-path:none!important}
- .T .h *,.T .dh *,.T .cv *,.T .ch *{position:static!important;transform:none!important;clip-path:none!important;inset:auto!important;margin-left:0!important}
- .T .h:after,.T .dh:after,.T .ch .i:after{display:none!important}
- .T .h .st,.T .h .st2,.T .h .pl,.T .bc,.T .mh2,.T .co{display:none!important}
- .T .h>*,.T .dh>*{padding:20px!important;width:auto!important;max-width:none!important}
- .T .h .im,.T .h .ar,.T .dh .im,.T .dh .i,.T .ch .im,.T .ch .i{display:block;min-height:300px;width:100%!important}
- .T .h,.T .dh{text-shadow:0 2px 14px #0009}
- .T .nv .lk span{white-space:nowrap}
+ body{font-size:15px}
+ .T *{max-width:100%}
+ .T [class]{grid-template-columns:1fr!important}
+ .T *{grid-column:auto!important;grid-row:auto!important}
+ .T h1{font-size:clamp(40px,12vw,72px)!important;line-height:.98!important}
+ .T h2{font-size:clamp(28px,8.5vw,48px)!important;line-height:1.05!important}
+ .T h3{font-size:clamp(20px,6vw,28px)!important}
+ /* nav: logo + hamburger, links in a dropdown */
+ .T .nv{position:relative!important;top:auto!important;display:flex!important;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 20px!important;margin:0!important;border-radius:0!important}
+ .T .nv .lg{font-size:18px!important;margin-right:auto!important;max-width:70%}
+ .T .nv .cta{display:none!important}
+ .T .nv .lk{display:none!important;order:3;width:100%;flex-direction:column;gap:0!important;padding:8px 0}
+ .T .nv.open .lk{display:flex!important}
+ .T .nv .lk span{padding:12px 0;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent);font-size:13px}
+ .nv-tg{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid currentColor;background:transparent;color:inherit;border-radius:4px;font-size:20px;cursor:pointer}
+ /* flatten absolutely-positioned hero compositions */
+ .T .h,.T .dh,.T .cv,.T .ch,.T .sp{height:auto!important;min-height:0!important;clip-path:none!important;margin:0!important;padding:0!important;display:block!important}
+ .T .h *,.T .dh *,.T .cv *,.T .ch *{position:static!important;transform:none!important;clip-path:none!important;inset:auto!important;margin-left:0!important;margin-right:0!important}
+ .T .h:after,.T .dh:after,.T .ch .i:after,.T .ch .im:after{display:none!important}
+ .T .h .st,.T .h .st2,.T .h .pl,.T .bc,.T .mh2,.T .co,.T .lb,.T .tcs,.T .pb,.T .ctl,.T .bd,.T .w.a{display:none!important}
+ .T .h>*,.T .dh>*,.T .ch>*,.T .cv>*{padding:24px 20px!important;width:auto!important;max-width:none!important;min-height:0!important}
+ /* every photo block gets a sane aspect ratio instead of desktop fixed heights */
+ .T .im,.T .i,.T .ar,.T .x,.T .th,.T [style*="assets/img"]{height:auto!important;min-height:0!important;aspect-ratio:4/3;width:100%!important;display:block;background-size:cover!important;background-position:center!important;margin-top:0!important}
+ .T .h,.T .dh{background-size:cover!important}
+ .T .h[style],.T .dh[style]{min-height:420px!important}
+ .T div:not([style*="assets/img"]):not(.im):not(.i):not(.ar):not(.x):not(.th){height:auto}
+ .T .wall>div,.T .st>div,.T .ga>div,.T .gl>div,.T .gr>div,.T .fr>div,.T .pl>div,.T .dt>div,.T .fs>div,.T .r>div{margin-top:0!important;height:auto;min-height:220px}
+ .T section,.T .ft,.T .hd,.T .hh,.T .q,.T .ab,.T .ex,.T .st,.T .sv,.T .tx,.T .en,.T .ix,.T .ls,.T .ep,.T .en,.T .wall,.T .ga,.T .gl,.T .strip,.T .gr,.T .lots,.T .g,.T .mh,.T .toc,.T .two,.T .svc,.T .cr,.T .dp,.T .pit,.T .tel,.T .spx{padding-left:20px!important;padding-right:20px!important;margin-left:0!important;margin-right:0!important}
+ .T .hd,.T .hh,.T .en{display:block!important;padding-top:56px!important;padding-bottom:24px!important}
+ .T .q,.T .ab,.T .ex,.T .st,.T .tx{padding-top:60px!important;padding-bottom:60px!important;gap:24px!important}
+ .T .strip{display:flex!important;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:60px!important}
+ .T .strip .c{flex:0 0 80vw!important;scroll-snap-align:start}
+ .T .ls>div,.T .ep>div,.T .en>div{grid-template-columns:1fr!important;gap:12px!important}
+ .T .ls .p,.T .ep .p{text-align:left!important}
+ .T .fl,.T .ch .fl{display:flex;flex-wrap:wrap;gap:10px 16px!important;text-align:left!important;margin-top:16px}
+ .T .tk,.T .mq{font-size:24px!important}
+ .T .big{font-size:48px!important}
+ .T table{font-size:14px}
+ .T .ft{grid-template-columns:1fr!important;gap:18px!important;padding-top:44px!important;padding-bottom:90px!important}
+ .T .h .t,.T .dh .t{display:block!important}
+ .T .ch{flex-wrap:wrap}
+ .T .ix{columns:1!important}
+ .T .ch>div:last-child:empty{min-height:260px!important}
+ .T .inf b{font-size:20px!important}
+ .T .ph{font-size:44px!important}
+ .T .ls .sp{display:flex;flex-wrap:wrap;gap:6px 14px}
+ body.th-01-noir-cinema .T .h,body.th-01-noir-cinema .T .dh,body.th-04-still-frame .T .h{box-shadow:inset 0 0 0 2000px #0008}
+ .ts{right:12px;bottom:12px}.ts button.tg{padding:10px 14px;font-size:12px}
 }
 
 .ts{position:fixed;right:18px;bottom:18px;z-index:9999;font:500 13px/1.2 system-ui,sans-serif;color:#111}
