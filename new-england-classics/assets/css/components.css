@@ -1,0 +1,36 @@
+/* Shared components (services, enquiry form, invoice payment). Inherit each theme's tokens: --a accent, --fg, --bg, --m muted, --h heading font */
+.xs{padding:110px 64px;border-top:1px solid color-mix(in srgb,var(--fg) 14%,transparent)}
+.xs-h{font-family:var(--h);font-size:64px;line-height:1.02;margin:14px 0 50px;max-width:900px}
+.xs-g{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 36px}
+.xs-g>div{border-top:2px solid var(--a);padding-top:18px}
+.xs-g h3{font-family:var(--h);font-size:26px;margin:8px 0}
+.xs-g p{font-size:14px}
+.xf{display:grid;grid-template-columns:1fr 1fr;gap:22px 30px;max-width:1000px}
+.xf label{display:flex;flex-direction:column;gap:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--m)}
+.xf .w{grid-column:1/-1}
+.xf input,.xf select,.xf textarea{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;color:var(--fg);background:transparent;border:0;border-bottom:1px solid color-mix(in srgb,var(--fg) 35%,transparent);padding:12px 0;border-radius:0;outline:none}
+.xf select option{color:#111}
+.xf input:focus,.xf select:focus,.xf textarea:focus{border-color:var(--a)}
+.xf-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.xbtn{font:inherit;font-size:12px;letter-spacing:.2em;text-transform:uppercase;background:var(--a);color:var(--bg);border:1px solid var(--a);padding:16px 30px;cursor:pointer}
+.xbtn-o{background:transparent;color:var(--fg)}
+.xbtn:disabled{opacity:.5;cursor:default}
+.xf-msg{font-size:14px;color:var(--a)}
+.xf-note{font-size:12px}
+.xpay{min-height:70vh;padding-top:80px}
+.xpay-card{max-width:900px;border:1px solid color-mix(in srgb,var(--fg) 20%,transparent);padding:44px;background:color-mix(in srgb,var(--fg) 3%,transparent)}
+.xpay-find{grid-template-columns:1fr auto;align-items:end;margin-bottom:34px}
+.xpay-head{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid color-mix(in srgb,var(--fg) 20%,transparent);padding-bottom:20px}
+.xpay-head h2{font-family:var(--h);font-size:48px;line-height:1}
+.xpay-st{border:1px solid var(--a);color:var(--a);padding:6px 14px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.xpay-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:26px 0}
+.xpay-meta dt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--m)}
+.xpay-lines{width:100%;border-collapse:collapse;margin:10px 0 30px}
+.xpay-lines th,.xpay-lines td{text-align:left;padding:14px 0;border-bottom:1px solid color-mix(in srgb,var(--fg) 15%,transparent)}
+.xpay-lines th{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--m);font-weight:500}
+.xpay-lines td:last-child,.xpay-lines th:last-child{text-align:right}
+.xpay-lines tfoot td{font-family:var(--h);font-size:28px;border:0}
+.xpay-btn{margin-right:16px}
+@media (max-width:760px){.xs{padding:60px 20px}.xs-h{font-size:38px}.xs-g,.xf,.xpay-meta{grid-template-columns:1fr}.xpay-card{padding:22px}}
+.lgo{height:38px;width:auto;vertical-align:middle;margin-right:12px;display:inline-block;border-radius:50%}
+@media (max-width:760px){.lgo{height:30px;margin-right:8px}}

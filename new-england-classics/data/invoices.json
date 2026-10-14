@@ -1,0 +1,15 @@
+{
+  "_note": "FICTIONAL DEMO DATA: invented customer names, vehicles and amounts for demonstration only. Not New England Classics' real invoices or pricing. Amounts in cents.",
+  "invoices": {
+    "INV-1042": { "id": "INV-1042", "customer": "Jordan Example (demo)", "issued": "2026-10-01", "due": "2026-10-31", "status": "Open",
+      "vehicle": "Demo vehicle: MG B roadster",
+      "lines": [ { "description": "Winter storage, heated & dry: Nov–Mar (demo)", "service": "Storage", "amount": 50000 },
+                 { "description": "Electronic ignition upgrade (demo)", "service": "Upgrades & Conversions", "amount": 27500 } ] },
+    "INV-1043": { "id": "INV-1043", "customer": "Casey Sample (demo)", "issued": "2026-09-12", "due": "2026-09-30", "status": "Paid",
+      "vehicle": "Demo vehicle: Triumph TR3A",
+      "lines": [ { "description": "Pre-purchase examination (demo)", "service": "Pre-purchase Examination", "amount": 30000 } ] },
+    "INV-1044": { "id": "INV-1044", "customer": "Riley Placeholder (demo)", "issued": "2026-10-10", "due": "2026-11-10", "status": "Open",
+      "vehicle": "Demo vehicle: Morgan Plus 4",
+      "lines": [ { "description": "Enclosed transport, Stratford CT to Dallas TX (demo)", "service": "Transport", "amount": 145000 } ] }
+  }
+}
