@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mauricios Painting LLC — Norwalk, CT | Residential & Commercial Painting</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#14273c;--ink2:#1d3a57;--paper:#faf6ef;--card:#ffffff;--accent:#e8622a;--accent-d:#c94e1f;--gold:#b98a5a;--muted:#5c6b7a;--line:#e4ddd0;--green:#1e7d4f;--radius:16px}
+body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+.mockbar{background:var(--ink);color:#ffe9d6;text-align:center;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;font-weight:600}
+.mockbar b{color:#fff}
+header.top{position:sticky;top:0;z-index:40;background:rgba(250,246,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px}
+.brand{display:flex;align-items:center;gap:11px}
+.mark{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--ink2),var(--ink));color:#fff;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:700;font-size:19px;position:relative;overflow:hidden}
+.mark:after{content:"";position:absolute;right:-9px;top:-9px;width:22px;height:22px;background:var(--accent);border-radius:50%}
+.brand h1{font-size:17px;line-height:1.15;font-weight:800}
+.brand small{display:block;font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.callbtn{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:10px 15px;border-radius:999px;white-space:nowrap}
+.callbtn span{color:#ffb287}
+.hero{max-width:1060px;margin:0 auto;padding:44px 18px 8px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.eyebrow{display:inline-block;background:#fdeee4;color:var(--accent-d);font-weight:700;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;padding:6px 11px;border-radius:999px;margin-bottom:15px}
+.hero h2{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(32px,5.4vw,52px);line-height:1.06;letter-spacing:-.01em}
+.hero h2 em{font-style:normal;color:var(--accent)}
+.hero p.sub{margin:16px 0 22px;font-size:17px;color:var(--muted);max-width:52ch}
+.cta-row{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;border:none;cursor:pointer;text-decoration:none;font-weight:800;font-size:15.5px;padding:14px 23px;border-radius:999px;background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(232,98,42,.32);transition:transform .15s,background .15s}
+.btn:hover{background:var(--accent-d);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
+.hero-note{font-size:13px;color:var(--muted);margin-top:12px}
+.hero-card{background:var(--ink);color:#fff;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+.hero-card:before{content:"";position:absolute;inset:auto -50px -70px auto;width:210px;height:210px;border-radius:50%;background:var(--accent);opacity:.32}
+.hero-card h3{font-family:Fraunces,serif;font-size:21px;margin-bottom:12px;position:relative}
+.hero-card ul{list-style:none;position:relative}
+.hero-card li{padding:9px 0 9px 27px;position:relative;border-bottom:1px solid rgba(255,255,255,.13);font-size:15px}
+.hero-card li:last-child{border:none}
+.hero-card li:before{content:"✓";position:absolute;left:0;color:#ffb287;font-weight:800}
+.trust{max-width:1060px;margin:26px auto 0;padding:0 18px}
+.trust-in{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.trust .t{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.trust .t b{display:block;font-size:16.5px}
+.trust .t span{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+section.blk{max-width:1060px;margin:0 auto;padding:46px 18px 6px}
+.sec-head h3{font-family:Fraunces,serif;font-size:29px;margin-bottom:6px}
+.sec-head p{color:var(--muted);max-width:62ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.scard .ico{width:46px;height:46px;border-radius:12px;background:#fdeee4;display:grid;place-items:center;margin-bottom:13px}
+.scard h4{font-size:17.5px;margin-bottom:6px}
+.scard p{font-size:14.5px;color:var(--muted)}
+.scard a{color:var(--accent-d);font-weight:700;font-size:14px;text-decoration:none;display:inline-block;margin-top:11px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.step{background:var(--ink);color:#eaf0f6;border-radius:var(--radius);padding:22px}
+.step .n{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:12px}
+.step h4{color:#fff;font-size:16.5px;margin-bottom:5px}
+.step p{font-size:14px;color:#b9c8d8}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.tile{border-radius:var(--radius);min-height:148px;padding:16px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.tile small{font-weight:700;letter-spacing:.07em;text-transform:uppercase;font-size:11px;opacity:.85}
+.tile b{font-size:16px}
+.tile p{font-size:12.5px;opacity:.9}
+.g1{background:linear-gradient(140deg,#2d5a7b,#14273c)}.g2{background:linear-gradient(140deg,#e8622a,#93380f)}.g3{background:linear-gradient(140deg,#7a8b5a,#43512c)}.g4{background:linear-gradient(140deg,#b98a5a,#6d4c26)}.g5{background:linear-gradient(140deg,#46617e,#1d3a57)}.g6{background:linear-gradient(140deg,#c94e1f,#5f3411)}
+.review-band{background:#f1e8d8;border:1px dashed var(--gold);border-radius:var(--radius);padding:22px;margin-top:20px}
+.review-band h4{font-size:16.5px;margin-bottom:5px}
+.review-band p{font-size:14.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="mockbar">Concept mockup — prepared for <b>&nbsp;Mauricios Painting LLC&nbsp;</b> · Not a live site</div>
+<header class="top"><div class="top-in">
+  <div class="brand"><div class="mark">M</div><h1>Mauricios Painting LLC<small>Norwalk, Connecticut</small></h1></div>
+  <a class="callbtn" href="tel:+12039196398">☎ <span>(203)</span> 919-6398</a>
+</div></header>
+
+<div class="hero">
+  <div>
+    <span class="eyebrow">Residential · Commercial · House Painting</span>
+    <h2>A fresh coat, <em>done right</em> — without the phone tag.</h2>
+    <p class="sub">Mauricios Painting provides a full range of commercial and residential painting services in Norwalk, CT. Tell us about your project in about 2 minutes — we text you back fast with next steps and a free estimate.</p>
+    <div class="cta-row">
+      <a class="btn" href="#quote">Get My Painting Quote →</a>
+      <a class="btn ghost" href="#work">See Our Work</a>
+    </div>
+    <p class="hero-note">No generic contact form. Your answers go straight to Mauricio's team — with your photos attached.</p>
+  </div>
+  <div class="hero-card">
+    <h3>Why homeowners pick us</h3>
+    <ul>
+      <li>Full range of residential &amp; commercial painting</li>
+      <li>Free estimates — Mon–Sat, 8am–5pm</li>
+      <li>Fast text-back on every quote request</li>
+      <li>Local Norwalk crew, Fairfield County</li>
+    </ul>
+  </div>
+</div>
+
+<div class="trust"><div class="trust-in">
+  <div class="t"><b>Norwalk, CT</b><span>Local &amp; based here</span></div>
+  <div class="t"><b>Residential</b><span>Homes &amp; condos</span></div>
+  <div class="t"><b>Commercial</b><span>Offices &amp; retail</span></div>
+  <div class="t"><b>Free</b><span>Estimates</span></div>
+</div></div>
+
+<section class="blk" id="services">
+  <div class="sec-head"><h3>Painting services</h3><p>One crew for the whole job — at home or at your business. Pick your project type in the quote form and we handle the rest.</p></div>
+  <div class="cards">
+    <div class="scard"><div class="ico">🏠</div><h4>Residential Painting</h4><p>Whole-home and house painting for Norwalk homeowners — careful prep, clean lines, and a tidy finish.</p><a href="#quote">Start a quote →</a></div>
+    <div class="scard"><div class="ico">🏢</div><h4>Commercial Painting</h4><p>Offices, retail, and commercial spaces painted on a schedule that respects your business hours.</p><a href="#quote">Start a quote →</a></div>
+    <div class="scard"><div class="ico">🎨</div><h4>House Painting</h4><p>From a single refresh to a full repaint — tell us the scope and timeline, and get a real estimate fast.</p><a href="#quote">Start a quote →</a></div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="sec-head"><h3>How it works</h3><p>Built for people who don't have time to chase a painter for a call back.</p></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h4>Answer 5 quick questions</h4><p>Project type, scope, timeline — and upload photos of the space. About 2 minutes, from your phone.</p></div>
+    <div class="step"><div class="n">2</div><h4>Get a fast text back</h4><p>Your request lands instantly with our team. We reply by text with questions or your estimate window.</p></div>
+    <div class="step"><div class="n">3</div><h4>Book your project</h4><p>Approve the estimate, pick your start date, and we show up ready. Simple from quote to final coat.</p></div>
+  </div>
+</section>
+
+<section class="blk" id="work">
+  <div class="sec-head"><h3>Recent work</h3><p>A look at projects from around Norwalk &amp; Fairfield County.</p></div>
+  <div class="gallery">
+    <div class="tile g1"><small>Before / After</small><b>Whole-home repaint</b><p>Photo from Mauricios Painting on Facebook</p></div>
+    <div class="tile g2"><small>Residential</small><b>Interior refresh</b><p>Photo from Mauricios Painting on Facebook</p></div>
+    <div class="tile g3"><small>Exterior</small><b>House painting</b><p>Photo from Mauricios Painting on Facebook</p></div>
+    <div class="tile g4"><small>Commercial</small><b>Business space</b><p>Photo from Mauricios Painting on Facebook</p></div>
+    <div class="tile g5"><small>Detail work</small><b>Clean lines, tidy finish</b><p>Photo from Mauricios Painting on Facebook</p></div>
+    <div class="tile g6"><small>Your project</small><b>Could be next →</b><p>Get your free estimate below</p></div>
+  </div>
+  <div class="review-band"><h4>⭐ Reviews live here</h4><p>On the live site, this section pulls in Mauricios Painting's best Google &amp; Facebook reviews automatically — so every new happy customer helps sell the next job. Follow along: Facebook <b>@paintingwithmauricio</b> · Instagram <b>@mauriciospaintingllc</b></p></div>
+</section>
+
+<style>
+.quote-wrap{max-width:1060px;margin:0 auto;padding:52px 18px 10px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 45px rgba(20,39,60,.10);overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr}
+.qside{background:var(--ink);color:#fff;padding:30px}
+.qside h3{font-family:Fraunces,serif;font-size:25px;line-height:1.2;margin-bottom:10px}
+.qside p{color:#b9c8d8;font-size:14.5px}
+.qside .mini{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px;margin-top:18px;font-size:13.5px}
+.qside .mini b{color:#ffb287}
+.qmain{padding:30px}
+.progress{height:8px;background:#eee5d5;border-radius:99px;overflow:hidden;margin-bottom:8px}
+.progress i{display:block;height:100%;width:20%;background:var(--accent);border-radius:99px;transition:width .35s}
+.stepcount{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+.qmain h4{font-size:21px;margin-bottom:14px}
+.opts{display:grid;gap:10px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:14px;padding:15px 16px;text-align:left;cursor:pointer;font:inherit;font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.opt small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+.opt.sel{border-color:var(--accent);background:#fff5ef}
+.opt .tick{color:var(--accent);font-weight:800;opacity:0}
+.opt.sel .tick{opacity:1}
+.qnav{display:flex;gap:10px;margin-top:20px}
+.qnav .btn{flex:1;text-align:center}
+.qnav .back{flex:0 0 auto;background:#fff;border:2px solid var(--line);color:var(--ink);box-shadow:none}
+.field{margin-bottom:13px}
+.field label{display:block;font-weight:700;font-size:13.5px;margin-bottom:6px}
+.field input,.field textarea{width:100%;font:inherit;font-size:15.5px;padding:12px 13px;border:2px solid var(--line);border-radius:12px;background:#fff}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.filebox{border:2px dashed var(--gold);border-radius:14px;padding:16px;text-align:center;color:var(--muted);font-size:14px;background:#fdfaf4}
+.summary{background:#fdfaf4;border:1px solid var(--line);border-radius:14px;padding:16px;font-size:14.5px}
+.summary div{display:flex;justify-content:space-between;gap:14px;padding:6px 0;border-bottom:1px solid var(--line)}
+.summary div:last-child{border:none}
+.summary b{text-align:right}
+.done{text-align:center;padding:12px 0}
+.done .big{width:64px;height:64px;border-radius:50%;background:#e6f4ec;color:var(--green);display:grid;place-items:center;font-size:30px;margin:0 auto 14px}
+.owner{max-width:1060px;margin:0 auto;padding:40px 18px 6px}
+.owner-in{background:#101d2c;color:#dbe6f2;border-radius:24px;padding:28px}
+.owner h3{color:#fff;font-family:Fraunces,serif;font-size:24px;margin-bottom:6px}
+.owner p.lead{color:#9db2c7;font-size:14.5px;max-width:66ch}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px}
+.pstage{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:12px;min-height:118px}
+.pstage h5{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#ffb287;margin-bottom:9px}
+.lead{background:#fff;color:var(--ink);border-radius:10px;padding:10px;font-size:12.5px;line-height:1.45}
+.lead b{font-size:13px}
+.lead .tag{display:inline-block;background:#fdeee4;color:var(--accent-d);font-weight:700;font-size:10.5px;padding:2px 7px;border-radius:99px;margin-top:6px}
+.lead.empty{background:rgba(255,255,255,.05);color:#7e93a9;border:1px dashed rgba(255,255,255,.2);display:grid;place-items:center;min-height:62px}
+.sms{margin-top:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;font-size:14px}
+.sms b{color:#fff}
+footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(20,39,60,.97);padding:11px 14px;display:none}
+.sticky a{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:800;text-decoration:none;padding:13px;border-radius:999px;font-size:15.5px}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:30px}.trust-in{grid-template-columns:repeat(2,1fr)}.cards,.steps,.gallery{grid-template-columns:1fr}.qcard{grid-template-columns:1fr}.pipe{grid-template-columns:1fr 1fr}.callbtn{font-size:13px;padding:9px 12px}.sticky{display:block}}
+</style>
+
+<div class="quote-wrap" id="quote">
+  <div class="qcard">
+    <div class="qside">
+      <h3>Get your painting quote</h3>
+      <p>Answer a few questions about your project. It takes about 2 minutes — and you'll hear back fast, by text.</p>
+      <div class="mini">💬 <b>What happens next?</b><br>Your answers + photos go straight to our team as one complete job request. No phone tag, no repeating yourself.</div>
+      <div class="mini">📍 <b>Mauricios Painting LLC</b><br>Norwalk, CT · Mon–Sat 8am–5pm<br>☎ (203) 919-6398</div>
+    </div>
+    <div class="qmain">
+      <div class="progress"><i id="pbar"></i></div>
+      <div class="stepcount" id="pcount">Step 1 of 5</div>
+      <div id="qbody"></div>
+      <div class="qnav" id="qnav">
+        <button class="btn back" id="backBtn" style="visibility:hidden">← Back</button>
+        <button class="btn" id="nextBtn">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="owner">
+  <div class="owner-in">
+    <h3>Behind the scenes — what the owner sees</h3>
+    <p class="lead">This part isn't on the customer's page. Every finished questionnaire becomes a tracked lead in a simple CRM pipeline, with an instant text to the customer and an alert to the owner. Try it: complete the quote form above and watch the new lead land here.</p>
+    <div class="pipe">
+      <div class="pstage"><h5>New Quote Request</h5><div id="pipe-new"><div class="lead empty">Waiting for a lead…</div></div></div>
+      <div class="pstage"><h5>Contacted</h5><div class="lead empty">—</div></div>
+      <div class="pstage"><h5>Site Visit Booked</h5><div class="lead empty">—</div></div>
+      <div class="pstage"><h5>Quote Sent</h5><div class="lead empty">—</div></div>
+      <div class="pstage"><h5>Booked</h5><div class="lead empty">—</div></div>
+    </div>
+    <div class="sms" id="smsPreview">📱 <b>Instant text to the customer:</b> “Hi! Thanks for your request — Mauricios Painting got your project details + photos. We'll text your estimate window shortly. — Mauricios Painting, Norwalk”</div>
+
+    <h3 style="margin-top:30px">And once it's booked — job management</h3>
+    <p class="lead">A booked lead becomes a <b style="color:#fff">Job</b> — with the customer's questionnaire answers, photos, address, and quote amount already attached. No spreadsheets, no sticky notes, no group-text chaos. Sample board below:</p>
+    <div class="pipe" style="grid-template-columns:repeat(4,1fr)">
+      <div class="pstage"><h5>📅 Scheduled</h5>
+        <div class="lead"><b>Sample job — Alvarez home</b><br>Residential repaint · Norwalk<br>Thu 9:00 AM · Crew A<span class="tag">Quote approved</span></div>
+        <div class="lead" style="margin-top:8px"><b>Sample job — Dental office</b><br>Commercial · Norwalk<br>Sat 8:00 AM · Full crew<span class="tag">Deposit paid</span></div>
+      </div>
+      <div class="pstage"><h5>🎨 In Progress</h5>
+        <div class="lead"><b>Sample job — Chen home</b><br>House painting · Day 2 of 3<br>✓ Prep ✓ Photos in<span class="tag">On-the-way text sent</span></div>
+      </div>
+      <div class="pstage"><h5>✅ Completed</h5>
+        <div class="lead"><b>Sample job — O'Brien home</b><br>Finished Tue · Walkthrough ✓<br>After photos in record<span class="tag">Review request sent</span></div>
+      </div>
+      <div class="pstage"><h5>💲 Invoiced / Paid</h5>
+        <div class="lead"><b>Sample job — Park Ave retail</b><br>Commercial · Invoice sent<span class="tag">Payment pending</span></div>
+        <div class="lead" style="margin-top:8px"><b>Sample job — Garcia home</b><br>Residential · Closed out<span class="tag" style="background:#e6f4ec;color:#1e7d4f">Paid in full</span></div>
+      </div>
+    </div>
+    <div class="sms">🗓️ <b>Today at a glance:</b> 1 job in progress, 1 site visit at 4 PM — every job, visit, crew, and customer in one calendar.<br><br>
+    ⚙️ <b>Job automations run themselves:</b> day-before reminder to the customer → on-the-way text → completion check-in → invoice follow-up → Google review request after the job is done. The owner just paints.</div>
+  </div>
+</section>
+
+<footer>
+  <div><b style="color:var(--ink)">Mauricios Painting LLC</b> · Norwalk, CT · (203) 919-6398<br>Residential &amp; Commercial Painting · Mon–Sat 8am–5pm</div>
+  <div>Concept mockup prepared for Mauricios Painting LLC.<br>Full build: landing page + quote questionnaire + CRM.</div>
+</footer>
+<div class="sticky"><a href="#quote">Get My Painting Quote →</a></div>
+
+<script>
+const steps=[
+ {key:'type',q:'What kind of project is this?',opts:[
+   {v:'Residential — inside',t:'Residential — inside the home',s:'Rooms, walls, ceilings, trim'},
+   {v:'Residential — outside',t:'Residential — outside the home',s:'Exterior of a house or building on your property'},
+   {v:'Commercial',t:'Commercial space',s:'Office, retail, restaurant, or other business'},
+   {v:'Not sure yet',t:'Not sure — I need advice',s:'Tell us what you are thinking, we will guide you'}]},
+ {key:'scope',q:'What are we painting?',opts:[
+   {v:'1–2 rooms / small area',t:'1–2 rooms / small area',s:'A focused refresh'},
+   {v:'Several rooms',t:'Several rooms',s:'Multiple spaces in the home'},
+   {v:'Whole interior',t:'Whole interior',s:'The full inside of the home'},
+   {v:'Full exterior',t:'Full exterior',s:'The complete outside'},
+   {v:'Commercial space',t:'A commercial space',s:'Tell us the size on the next screen'}]},
+ {key:'timeline',q:'When do you want to start?',opts:[
+   {v:'ASAP',t:'As soon as possible',s:'Ready when you are'},
+   {v:'Within 2–4 weeks',t:'Within the next 2–4 weeks',s:'Planning ahead a little'},
+   {v:'1–3 months out',t:'In 1–3 months',s:'Getting quotes now'},
+   {v:'Flexible',t:'Flexible',s:'Just exploring for now'}]},
+ {key:'photos',q:'Show us the space',custom:'photos'},
+ {key:'contact',q:'Where do we send your estimate?',custom:'contact'}
+];
+let cur=0;const ans={};let photoNames=[];
+const qbody=document.getElementById('qbody'),pbar=document.getElementById('pbar'),pcount=document.getElementById('pcount'),backBtn=document.getElementById('backBtn'),nextBtn=document.getElementById('nextBtn');
+function render(){
+  const st=steps[cur];
+  pbar.style.width=((cur+1)/steps.length*100)+'%';
+  pcount.textContent = cur<steps.length ? ('Step '+(cur+1)+' of '+steps.length) : 'All done';
+  backBtn.style.visibility = cur===0?'hidden':'visible';
+  nextBtn.textContent = cur===steps.length-1 ? 'Send My Request ✓' : 'Continue →';
+  if(st.custom==='photos'){
+    qbody.innerHTML='<h4>'+st.q+'</h4><div class="filebox">📷 <b>Add photos of the space</b><br>Photos help us estimate faster and more accurately.<br><br><input type="file" id="photos" accept="image/*" multiple style="font:inherit"></div><div class="field" style="margin-top:13px"><label>Anything we should know? (colors, repairs, access — optional)</label><textarea id="notes" rows="3" placeholder="Example: walls need patching in the hallway, HOA color rules, pets at home…">'+(ans.notes||'')+'</textarea></div>';
+    document.getElementById('photos').addEventListener('change',e=>{photoNames=[...e.target.files].map(f=>f.name)});
+  } else if(st.custom==='contact'){
+    qbody.innerHTML='<h4>'+st.q+'</h4>'+
+    '<div class="field"><label>Your name</label><input id="f_name" placeholder="Full name" value="'+(ans.name||'')+'"></div>'+
+    '<div class="field"><label>Mobile number (for your text-back)</label><input id="f_phone" inputmode="tel" placeholder="(203) 555-0123" value="'+(ans.phone||'')+'"></div>'+
+    '<div class="field"><label>Project address / town</label><input id="f_addr" placeholder="Street + town in Fairfield County" value="'+(ans.addr||'')+'"></div>'+
+    '<div class="field"><label>Email (optional)</label><input id="f_email" inputmode="email" placeholder="you@email.com" value="'+(ans.email||'')+'"></div>'+
+    '<p style="font-size:12.5px;color:var(--muted)">By sending, you agree we can text you about your estimate. No spam, ever.</p>';
+  } else {
+    qbody.innerHTML='<h4>'+st.q+'</h4><div class="opts">'+st.opts.map(o=>'<button type="button" class="opt'+(ans[st.key]===o.v?' sel':'')+'" data-v="'+o.v.replace(/"/g,'&quot;')+'"><span>'+o.t+'<small>'+o.s+'</small></span><span class="tick">✓</span></button>').join('')+'</div>';
+    qbody.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[st.key]=b.dataset.v;render();setTimeout(next,180)});
+  }
+}
+function collect(){
+  const st=steps[cur];
+  if(st.custom==='photos'){const n=document.getElementById('notes');if(n)ans.notes=n.value}
+  if(st.custom==='contact'){
+    ans.name=document.getElementById('f_name').value.trim();
+    ans.phone=document.getElementById('f_phone').value.trim();
+    ans.addr=document.getElementById('f_addr').value.trim();
+    ans.email=document.getElementById('f_email').value.trim();
+    if(!ans.name||!ans.phone){alert('Please add your name and mobile number so we can text your estimate.');return false}
+  }
+  if(!st.custom && !ans[st.key]){alert('Pick the closest option to continue.');return false}
+  return true;
+}
+function finish(){
+  pbar.style.width='100%';pcount.textContent='Request sent';
+  document.getElementById('qnav').style.display='none';
+  const rows=[['Project',ans.type],['Scope',ans.scope],['Timeline',ans.timeline],['Photos',photoNames.length?photoNames.join(', '):'None added'],['Name',ans.name],['Mobile',ans.phone],['Address',ans.addr]];
+  qbody.innerHTML='<div class="done"><div class="big">✓</div><h4>You are in, '+(ans.name.split(' ')[0]||'friend')+'.</h4><p style="color:var(--muted);margin:8px 0 16px">We just texted '+ans.phone+' a confirmation. Mauricios Painting will follow up with your estimate window — usually the same business day.</p></div><div class="summary">'+rows.map(r=>'<div><span>'+r[0]+'</span><b>'+(r[1]||'—')+'</b></div>').join('')+'</div>';
+  const lead=document.getElementById('pipe-new');
+  lead.innerHTML='<div class="lead"><b>'+ans.name+'</b><br>'+ans.type+' · '+ans.scope+'<br>'+ans.addr+'<br>⏱ '+ans.timeline+'<span class="tag">NEW · via questionnaire</span></div>';
+  document.getElementById('smsPreview').innerHTML='📱 <b>Instant alert to the owner:</b> “New quote request: '+ans.name+' — '+ans.type+', '+ans.scope+', '+ans.timeline+'. Photos: '+(photoNames.length||0)+'. Tap to call: '+ans.phone+'”';
+  document.querySelector('.owner').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function next(){ if(!collect())return; if(cur<steps.length-1){cur++;render()} else {finish()} }
+backBtn.onclick=()=>{if(cur>0){cur--;render()}};
+nextBtn.onclick=next;
+render();
+</script>
+</body>
+</html>
