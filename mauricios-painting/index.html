@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#14273c;--ink2:#1d3a57;--paper:#faf6ef;--card:#ffffff;--accent:#e8622a;--accent-d:#c94e1f;--gold:#b98a5a;--muted:#5c6b7a;--line:#e4ddd0;--green:#1e7d4f;--radius:16px}
+:root{--ink:#14273c;--ink2:#1d3a57;--paper:#faf6ef;--card:#ffffff;--accent:#bc430d;--accent-d:#9a3c09;--gold:#b98a5a;--muted:#4d5c69;--line:#e4ddd0;--green:#1e7d4f;--radius:16px}
 body{font-family:Inter,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
 .mockbar{background:var(--ink);color:#ffe9d6;text-align:center;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;font-weight:600}
 .mockbar b{color:#fff}
@@ -16,7 +16,6 @@ header.top{position:sticky;top:0;z-index:40;background:rgba(250,246,239,.94);bac
 .top-in{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px}
 .brand{display:flex;align-items:center;gap:11px}
 .mark{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--ink2),var(--ink));color:#fff;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:700;font-size:19px;position:relative;overflow:hidden}
-.mark:after{content:"";position:absolute;right:-9px;top:-9px;width:22px;height:22px;background:var(--accent);border-radius:50%}
 .brand h1{font-size:17px;line-height:1.15;font-weight:800}
 .brand small{display:block;font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .callbtn{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:10px 15px;border-radius:999px;white-space:nowrap}
@@ -27,29 +26,29 @@ header.top{position:sticky;top:0;z-index:40;background:rgba(250,246,239,.94);bac
 .hero h2 em{font-style:normal;color:var(--accent)}
 .hero p.sub{margin:16px 0 22px;font-size:17px;color:var(--muted);max-width:52ch}
 .cta-row{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
-.btn{display:inline-block;border:none;cursor:pointer;text-decoration:none;font-weight:800;font-size:15.5px;padding:14px 23px;border-radius:999px;background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(232,98,42,.32);transition:transform .15s,background .15s}
+.btn{display:inline-block;border:none;cursor:pointer;text-decoration:none;font-weight:800;font-size:15.5px;padding:14px 23px;border-radius:999px;background:var(--accent);color:#fff;box-shadow:0 10px 22px rgba(16,29,44,.22);transition:transform .15s,background .15s}
 .btn:hover{background:var(--accent-d);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none}
 .hero-note{font-size:13px;color:var(--muted);margin-top:12px}
 .hero-card{background:var(--ink);color:#fff;border-radius:22px;padding:24px;position:relative;overflow:hidden}
-.hero-card:before{content:"";position:absolute;inset:auto -50px -70px auto;width:210px;height:210px;border-radius:50%;background:var(--accent);opacity:.32}
 .hero-card h3{font-family:Fraunces,serif;font-size:21px;margin-bottom:12px;position:relative}
 .hero-card ul{list-style:none;position:relative}
 .hero-card li{padding:9px 0 9px 27px;position:relative;border-bottom:1px solid rgba(255,255,255,.13);font-size:15px}
 .hero-card li:last-child{border:none}
 .hero-card li:before{content:"✓";position:absolute;left:0;color:#ffb287;font-weight:800}
 .trust{max-width:1060px;margin:26px auto 0;padding:0 18px}
-.trust-in{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.trust .t{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.trust-in{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust .t{padding:16px 10px;text-align:center}.trust .t+.t{border-left:1px solid var(--line)}
 .trust .t b{display:block;font-size:16.5px}
 .trust .t span{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 section.blk{max-width:1060px;margin:0 auto;padding:46px 18px 6px}
 .sec-head h3{font-family:Fraunces,serif;font-size:29px;margin-bottom:6px}
 .sec-head p{color:var(--muted);max-width:62ch}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
-.scard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.scard .ico{width:46px;height:46px;border-radius:12px;background:#fdeee4;display:grid;place-items:center;margin-bottom:13px}
-.scard h4{font-size:17.5px;margin-bottom:6px}
+.cards{display:block;margin-top:8px;border-top:1px solid var(--line)}
+.scard.feature{background:var(--ink);border-radius:16px;border-bottom:none;color:#eaf0f6;padding:22px;margin-top:14px}.scard.feature h4{color:#fff}.scard.feature p{color:#b9c8d8}.scard.feature .ico{background:rgba(188,67,13,.35);color:#ffb287}.scard.feature a{color:#ffb287}
+.scard{display:grid;grid-template-columns:52px 1fr auto;column-gap:16px;align-items:start;padding:20px 6px;border-bottom:1px solid var(--line)}
+.scard .ico{width:46px;height:46px;border-radius:12px;background:#fdeee4;color:var(--accent-d);display:grid;place-items:center}
+.scard h4{font-size:18px;margin-bottom:5px}.scard p{max-width:58ch}.scard a{align-self:center;white-space:nowrap}
 .scard p{font-size:14.5px;color:var(--muted)}
 .scard a{color:var(--accent-d);font-weight:700;font-size:14px;text-decoration:none;display:inline-block;margin-top:11px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
@@ -62,32 +61,61 @@ section.blk{max-width:1060px;margin:0 auto;padding:46px 18px 6px}
 .tile small{font-weight:700;letter-spacing:.07em;text-transform:uppercase;font-size:11px;opacity:.85}
 .tile b{font-size:16px}
 .tile p{font-size:12.5px;opacity:.9}
-.g1{background:linear-gradient(140deg,#2d5a7b,#14273c)}.g2{background:linear-gradient(140deg,#e8622a,#93380f)}.g3{background:linear-gradient(140deg,#7a8b5a,#43512c)}.g4{background:linear-gradient(140deg,#b98a5a,#6d4c26)}.g5{background:linear-gradient(140deg,#46617e,#1d3a57)}.g6{background:linear-gradient(140deg,#c94e1f,#5f3411)}
+.g1{background:linear-gradient(140deg,#2d5a7b,#14273c)}.g2{background:linear-gradient(140deg,#a83a08,#7c2a05)}.g3{background:linear-gradient(140deg,#55663c,#2e3c1d)}.g4{background:linear-gradient(140deg,#7d5a2e,#46300f)}.g5{background:linear-gradient(140deg,#46617e,#1d3a57)}.g6{background:linear-gradient(140deg,#9a3c09,#5f3411)}
 .review-band{background:#f1e8d8;border:1px dashed var(--gold);border-radius:var(--radius);padding:22px;margin-top:20px}
 .review-band h4{font-size:16.5px;margin-bottom:5px}
 .review-band p{font-size:14.5px;color:var(--muted)}
+.ic{width:22px;height:22px;flex:none}
+.ic-sm{width:16px;height:16px;vertical-align:-3px}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+input,textarea{caret-color:var(--accent-d)}
+.field input::placeholder,.field textarea::placeholder,.signin input::placeholder,.msginput input::placeholder{color:#68737d;opacity:1}
+h2,h3,h4{text-wrap:balance}
+.btn:active,.opt:active{transform:translateY(1px)}
+.opt:hover{border-color:var(--gold)}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero>*{animation:rise .9s cubic-bezier(.16,1,.3,1) both}
+.hero>*:nth-child(2){animation-delay:.12s}
+.qmain.swap{animation:rise .45s cubic-bezier(.16,1,.3,1) both}
+@media (prefers-reduced-motion:reduce){.hero>*,.qmain.swap{animation:none}}
+.qerr{display:none;color:#b3261e;font-weight:600;font-size:14px;margin-top:12px}
+.qerr.show{display:block}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M16 9h3a1 1 0 0 1 1 1v11"/><path d="M2 21h20"/><path d="M8 7h2m-2 4h2m-2 4h2m4-8h0m0 4h0m0 4h0"/></symbol>
+<symbol id="i-roller" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="14" height="6" rx="1"/><path d="M17 6h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-8v3"/><path d="M11 15h2v3"/><rect x="10" y="18" width="4" height="3" rx="1"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5.5 8-5.5s6.5 1.5 8 5.5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 1 2-2h1.5L8 3h8l1.5 3H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l2.3-2.9A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5"/><path d="M9.5 13h5m-5 4h5"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></symbol>
+</defs></svg>
+
 <div class="mockbar">Concept mockup — prepared for <b>&nbsp;Mauricios Painting LLC&nbsp;</b> · Not a live site</div>
 <header class="top"><div class="top-in">
   <div class="brand"><div class="mark">M</div><h1>Mauricios Painting LLC<small>Norwalk, Connecticut</small></h1></div>
   <div style="display:flex;gap:8px;align-items:center">
-    <a class="callbtn" style="background:#fff;color:var(--ink);border:2px solid var(--ink)" href="#portal">👤 Client Sign In</a>
-    <a class="callbtn" href="tel:+12039196398">☎ <span>(203)</span> 919-6398</a>
+    <a class="callbtn" style="background:#fff;color:var(--ink);border:2px solid var(--ink)" href="#portal"><svg class="ic-sm"><use href="#i-user"/></svg> Client Sign In</a>
+    <a class="callbtn" href="tel:+12039196398"><svg class="ic-sm"><use href="#i-phone"/></svg> <span>(203)</span> 919-6398</a>
   </div>
 </div></header>
 
 <div class="hero">
   <div>
-    <span class="eyebrow">Residential · Commercial · House Painting</span>
     <h2>A fresh coat, <em>done right</em> — without the phone tag.</h2>
-    <p class="sub">Mauricios Painting provides a full range of commercial and residential painting services in Norwalk, CT. Tell us about your project in about 2 minutes — we text you back fast with next steps and a free estimate.</p>
+    <p class="sub">Mauricios Painting provides a full range of commercial and residential painting services in Norwalk, CT. Tell us about your project in about 2 minutes. We text you back fast with next steps and a free estimate.</p>
     <div class="cta-row">
       <a class="btn" href="#quote">Get My Painting Quote →</a>
       <a class="btn ghost" href="#work">See Our Work</a>
     </div>
-    <p class="hero-note">No generic contact form. Your answers go straight to Mauricio's team — with your photos attached.</p>
+    <p class="hero-note">No generic contact form. Your answers and photos go straight to Mauricio's team.</p>
   </div>
   <div class="hero-card">
     <h3>Why homeowners pick us</h3>
@@ -110,9 +138,9 @@ section.blk{max-width:1060px;margin:0 auto;padding:46px 18px 6px}
 <section class="blk" id="services">
   <div class="sec-head"><h3>Painting services</h3><p>One crew for the whole job — at home or at your business. Pick your project type in the quote form and we handle the rest.</p></div>
   <div class="cards">
-    <div class="scard"><div class="ico">🏠</div><h4>Residential Painting</h4><p>Whole-home and house painting for Norwalk homeowners — careful prep, clean lines, and a tidy finish.</p><a href="#quote">Start a quote →</a></div>
-    <div class="scard"><div class="ico">🏢</div><h4>Commercial Painting</h4><p>Offices, retail, and commercial spaces painted on a schedule that respects your business hours.</p><a href="#quote">Start a quote →</a></div>
-    <div class="scard"><div class="ico">🎨</div><h4>House Painting</h4><p>From a single refresh to a full repaint — tell us the scope and timeline, and get a real estimate fast.</p><a href="#quote">Start a quote →</a></div>
+    <div class="scard feature"><div class="ico"><svg class="ic"><use href="#i-home"/></svg></div><div><h4>Residential Painting</h4><p>Whole-home and house painting for Norwalk homeowners. Careful prep, clean lines, and a tidy finish.</p></div><a href="#quote">Start a quote →</a></div>
+    <div class="scard"><div class="ico"><svg class="ic"><use href="#i-building"/></svg></div><div><h4>Commercial Painting</h4><p>Offices, retail, and commercial spaces painted on a schedule that respects your business hours.</p></div><a href="#quote">Start a quote →</a></div>
+    <div class="scard"><div class="ico"><svg class="ic"><use href="#i-roller"/></svg></div><div><h4>House Painting</h4><p>From a single refresh to a full repaint. Tell us the scope and timeline and get a real estimate fast.</p></div><a href="#quote">Start a quote →</a></div>
   </div>
 </section>
 
@@ -135,7 +163,7 @@ section.blk{max-width:1060px;margin:0 auto;padding:46px 18px 6px}
     <div class="tile g5"><small>Detail work</small><b>Clean lines, tidy finish</b><p>Photo from Mauricios Painting on Facebook</p></div>
     <div class="tile g6"><small>Your project</small><b>Could be next →</b><p>Get your free estimate below</p></div>
   </div>
-  <div class="review-band"><h4>⭐ Reviews live here</h4><p>On the live site, this section pulls in Mauricios Painting's best Google &amp; Facebook reviews automatically — so every new happy customer helps sell the next job. Follow along: Facebook <b>@paintingwithmauricio</b> · Instagram <b>@mauriciospaintingllc</b></p></div>
+  <div class="review-band"><h4>Reviews live here</h4><p>On the live site, this section pulls in Mauricios Painting's best Google &amp; Facebook reviews automatically — so every new happy customer helps sell the next job. Follow along: Facebook <b>@paintingwithmauricio</b> · Instagram <b>@mauriciospaintingllc</b></p></div>
 </section>
 
 <style>
@@ -176,18 +204,18 @@ section.blk{max-width:1060px;margin:0 auto;padding:46px 18px 6px}
 .owner h3{color:#fff;font-family:Fraunces,serif;font-size:24px;margin-bottom:6px}
 .owner p.lead,.owner p.ointro{color:#9db2c7;font-size:14.5px;max-width:66ch;background:transparent}
 .pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px}
-.pstage{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:12px;min-height:118px}
-.pstage h5{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#ffb287;margin-bottom:9px}
+.pstage{padding:4px 14px 4px 0;min-height:118px}.pstage+.pstage{border-left:1px solid rgba(255,255,255,.12);padding-left:14px}
+.pstage-h{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#ffb287;margin-bottom:9px}
 .lead{background:#fff;color:var(--ink);border-radius:10px;padding:10px;font-size:12.5px;line-height:1.45}
 .lead b{font-size:13px}
-.lead .tag{display:inline-block;background:#fdeee4;color:var(--accent-d);font-weight:700;font-size:10.5px;padding:2px 7px;border-radius:99px;margin-top:6px}
+.lead .tag{display:inline-block;background:#fdeee4;color:var(--accent-d);font-weight:700;font-size:11.5px;padding:2px 7px;border-radius:99px;margin-top:6px}
 .lead.empty{background:rgba(255,255,255,.05);color:#7e93a9;border:1px dashed rgba(255,255,255,.2);display:grid;place-items:center;min-height:62px}
-.sms{margin-top:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;font-size:14px}
+.sms{margin-top:20px;border-top:1px solid rgba(255,255,255,.14);padding:16px 2px 0;font-size:14px}
 .sms b{color:#fff}
 footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(20,39,60,.97);padding:11px 14px;display:none}
 .sticky a{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:800;text-decoration:none;padding:13px;border-radius:999px;font-size:15.5px}
-@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:30px}.trust-in{grid-template-columns:repeat(2,1fr)}.cards,.steps,.gallery{grid-template-columns:1fr}.qcard{grid-template-columns:1fr}.pipe{grid-template-columns:1fr 1fr}.callbtn{font-size:13px;padding:9px 12px}.sticky{display:block}}
+@media(max-width:820px){.pstage+.pstage{border-left:none;padding-left:0}.hero{grid-template-columns:1fr;padding-top:30px}.trust-in{grid-template-columns:repeat(2,1fr)}.cards,.steps,.gallery{grid-template-columns:1fr}.qcard{grid-template-columns:1fr}.pipe{grid-template-columns:1fr 1fr}.callbtn{font-size:13px;padding:9px 12px}.sticky{display:block}}
 </style>
 
 <div class="quote-wrap" id="quote">
@@ -195,13 +223,14 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
     <div class="qside">
       <h3>Get your painting quote</h3>
       <p>Answer a few questions about your project. It takes about 2 minutes — and you'll hear back fast, by text.</p>
-      <div class="mini">💬 <b>What happens next?</b><br>Your answers + photos go straight to our team as one complete job request. No phone tag, no repeating yourself.</div>
-      <div class="mini">📍 <b>Mauricios Painting LLC</b><br>Norwalk, CT · Mon–Sat 8am–5pm<br>☎ (203) 919-6398</div>
+      <div class="mini"><b>What happens next?</b><br>Your answers + photos go straight to our team as one complete job request. No phone tag, no repeating yourself.</div>
+      <div class="mini"><b>Mauricios Painting LLC</b><br>Norwalk, CT · Mon–Sat 8am–5pm<br>(203) 919-6398</div>
     </div>
     <div class="qmain">
       <div class="progress"><i id="pbar"></i></div>
       <div class="stepcount" id="pcount">Step 1 of 5</div>
       <div id="qbody"></div>
+      <div class="qerr" id="qerr" role="alert"></div>
       <div class="qnav" id="qnav">
         <button class="btn back" id="backBtn" style="visibility:hidden">← Back</button>
         <button class="btn" id="nextBtn">Continue →</button>
@@ -215,34 +244,34 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
     <h3>Behind the scenes — what the owner sees</h3>
     <p class="ointro">This part isn't on the customer's page. Every finished questionnaire becomes a tracked lead in a simple CRM pipeline, with an instant text to the customer and an alert to the owner. Try it: complete the quote form above and watch the new lead land here.</p>
     <div class="pipe">
-      <div class="pstage"><h5>New Quote Request</h5><div id="pipe-new"><div class="lead empty">Waiting for a lead…</div></div></div>
-      <div class="pstage"><h5>Contacted</h5><div class="lead empty">—</div></div>
-      <div class="pstage"><h5>Site Visit Booked</h5><div class="lead empty">—</div></div>
-      <div class="pstage"><h5>Quote Sent</h5><div class="lead empty">—</div></div>
-      <div class="pstage"><h5>Booked</h5><div class="lead empty">—</div></div>
+      <div class="pstage"><div class="pstage-h">New Quote Request</div><div id="pipe-new"><div class="lead empty">Waiting for a lead…</div></div></div>
+      <div class="pstage"><div class="pstage-h">Contacted</div><div class="lead empty">—</div></div>
+      <div class="pstage"><div class="pstage-h">Site Visit Booked</div><div class="lead empty">—</div></div>
+      <div class="pstage"><div class="pstage-h">Quote Sent</div><div class="lead empty">—</div></div>
+      <div class="pstage"><div class="pstage-h">Booked</div><div class="lead empty">—</div></div>
     </div>
-    <div class="sms" id="smsPreview">📱 <b>Instant text to the customer:</b> “Hi! Thanks for your request — Mauricios Painting got your project details + photos. We'll text your estimate window shortly. — Mauricios Painting, Norwalk”</div>
+    <div class="sms" id="smsPreview"><b>Instant text to the customer:</b> “Hi! Thanks for your request — Mauricios Painting got your project details + photos. We'll text your estimate window shortly. — Mauricios Painting, Norwalk”</div>
 
     <h3 style="margin-top:30px">And once it's booked — job management</h3>
-    <p class="ointro">A booked lead becomes a <b style="color:#fff">Job</b> — with the customer's questionnaire answers, photos, address, and quote amount already attached. No spreadsheets, no sticky notes, no group-text chaos. Sample board below:</p>
+    <p class="ointro">A booked lead becomes a <b style="color:#fff">Job</b>, with the customer's questionnaire answers, photos, address, and quote amount already attached. No spreadsheets, no sticky notes, no group-text chaos. Sample board below:</p>
     <div class="pipe" style="grid-template-columns:repeat(4,1fr)">
-      <div class="pstage"><h5>📅 Scheduled</h5>
+      <div class="pstage"><div class="pstage-h">Scheduled</div>
         <div class="lead"><b>Sample job — Alvarez home</b><br>Residential repaint · Norwalk<br>Thu 9:00 AM · Crew A<span class="tag">Quote approved</span></div>
         <div class="lead" style="margin-top:8px"><b>Sample job — Dental office</b><br>Commercial · Norwalk<br>Sat 8:00 AM · Full crew<span class="tag">Deposit paid</span></div>
       </div>
-      <div class="pstage"><h5>🎨 In Progress</h5>
+      <div class="pstage"><div class="pstage-h">In Progress</div>
         <div class="lead"><b>Sample job — Chen home</b><br>House painting · Day 2 of 3<br>✓ Prep ✓ Photos in<span class="tag">On-the-way text sent</span></div>
       </div>
-      <div class="pstage"><h5>✅ Completed</h5>
+      <div class="pstage"><div class="pstage-h">Completed</div>
         <div class="lead"><b>Sample job — O'Brien home</b><br>Finished Tue · Walkthrough ✓<br>After photos in record<span class="tag">Review request sent</span></div>
       </div>
-      <div class="pstage"><h5>💲 Invoiced / Paid</h5>
+      <div class="pstage"><div class="pstage-h">Invoiced / Paid</div>
         <div class="lead"><b>Sample job — Park Ave retail</b><br>Commercial · Invoice sent<span class="tag">Payment pending</span></div>
         <div class="lead" style="margin-top:8px"><b>Sample job — Garcia home</b><br>Residential · Closed out<span class="tag" style="background:#e6f4ec;color:#1e7d4f">Paid in full</span></div>
       </div>
     </div>
-    <div class="sms">🗓️ <b>Today at a glance:</b> 1 job in progress, 1 site visit at 4 PM — every job, visit, crew, and customer in one calendar.<br><br>
-    ⚙️ <b>Job automations run themselves:</b> day-before reminder to the customer → on-the-way text → completion check-in → invoice follow-up → Google review request after the job is done. The owner just paints.</div>
+    <div class="sms"><b>Today at a glance:</b> 1 job in progress, 1 site visit at 4 PM — every job, visit, crew, and customer in one calendar.<br><br>
+    <b>Job automations run themselves:</b> day-before reminder to the customer → on-the-way text → completion check-in → invoice follow-up → Google review request after the job is done. The owner just paints.</div>
   </div>
 </section>
 
@@ -253,7 +282,7 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
 .portal-top h3{font-family:Fraunces,serif;font-size:22px}
 .portal-top p{color:#b9c8d8;font-size:13.5px}
 .signin{display:flex;gap:8px;flex-wrap:wrap}
-.signin input{font:inherit;font-size:14.5px;padding:11px 13px;border-radius:999px;border:none;min-width:220px}
+.signin input{font:inherit;font-size:14.5px;padding:11px 13px;border-radius:999px;border:none;min-width:220px;background:#fff;color:var(--ink)}
 .signin button{font:inherit;font-weight:800;font-size:14.5px;padding:11px 18px;border-radius:999px;border:none;background:var(--accent);color:#fff;cursor:pointer}
 .portal-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:0}
 .portal-main{padding:24px 26px}
@@ -265,16 +294,16 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
 .tstep:first-child:after{display:none}
 .tstep.done{color:var(--green)}.tstep.done:before{background:var(--green)}
 .tstep.now{color:var(--accent-d)}.tstep.now:before{background:var(--accent);box-shadow:0 0 0 4px #fdeee4}
-.tstep small{display:block;font-weight:600;color:var(--muted);font-size:11px}
+.tstep small{display:block;font-weight:600;color:var(--muted);font-size:12px}
 .photorow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
 .pgroup b{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
 .ptiles{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}
-.ptile{border-radius:11px;min-height:66px;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:flex-end;padding:8px}
-.msg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px}
+.ptile{border-radius:11px;min-height:66px;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:flex-end;padding:8px}
+.msg{border-top:1px solid var(--line);padding:16px 0 2px;margin-top:16px}
 .bubble{max-width:86%;padding:9px 12px;border-radius:13px;font-size:13.5px;margin-bottom:8px;line-height:1.45}
 .bubble.them{background:#eef3f8;border-bottom-left-radius:4px}
 .bubble.me{background:#fdeee4;margin-left:auto;border-bottom-right-radius:4px}
-.bubble small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.bubble small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
 .msginput{display:flex;gap:8px;margin-top:6px}
 .msginput input{flex:1;font:inherit;font-size:14px;padding:10px 12px;border:2px solid var(--line);border-radius:999px}
 .msginput button{font:inherit;font-weight:800;padding:10px 16px;border:none;border-radius:999px;background:var(--ink);color:#fff;cursor:pointer}
@@ -289,10 +318,10 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
 </style>
 
 <div class="portal-wrap" id="portal">
-  <div class="sec-head" style="margin-bottom:16px"><h3>For clients — follow your project live</h3><p>Every Mauricios Painting client gets a sign-in. No more “any updates?” texts — check your timeline, see today's photos, message the crew, and pay right from your phone. <b>Preview below uses a sample job.</b></p></div>
+  <div class="sec-head" style="margin-bottom:16px"><h3>For clients — follow your project live</h3><p>Every Mauricios Painting client gets a sign-in. No more “any updates?” texts. Check your timeline, see today's photos, message the crew, and pay right from your phone. <b>Preview below uses a sample job.</b></p></div>
   <div class="portal">
     <div class="portal-top">
-      <div><h3>👤 Client Portal</h3><p>Sign in with your email — we'll send you a secure link. No password to remember.</p></div>
+      <div><h3><svg class="ic" style="vertical-align:-4px"><use href="#i-user"/></svg> Client Portal</h3><p>Sign in with your email — we'll send you a secure link. No password to remember.</p></div>
       <div class="signin"><input id="si_email" type="email" placeholder="you@email.com"><button id="si_btn" type="button">Send My Sign-In Link</button></div>
     </div>
     <div class="portal-grid">
@@ -307,25 +336,25 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
           <div class="tstep">Walkthrough<small>Up next</small></div>
           <div class="tstep">Complete<small>Final photos</small></div>
         </div>
-        <b style="font-size:14.5px">📸 Photo progress</b>
+        <b style="font-size:14.5px"><svg class="ic-sm"><use href="#i-camera"/></svg> Photo progress</b>
         <div class="photorow">
           <div class="pgroup"><b>Before</b><div class="ptiles"><div class="ptile g5">Living room</div><div class="ptile g4">Exterior</div></div></div>
           <div class="pgroup"><b>In Progress</b><div class="ptiles"><div class="ptile g2">Prep done</div><div class="ptile g1">First coat</div></div></div>
           <div class="pgroup"><b>After</b><div class="ptiles"><div class="ptile" style="background:#e8e2d4;color:var(--muted)">Coming at completion</div><div class="ptile" style="background:#e8e2d4;color:var(--muted)">Final walkthrough</div></div></div>
         </div>
         <div class="msg">
-          <b style="font-size:14.5px">💬 Messages with Mauricios Painting</b>
+          <b style="font-size:14.5px"><svg class="ic-sm"><use href="#i-chat"/></svg> Messages with Mauricios Painting</b>
           <div style="margin-top:10px">
             <div class="bubble them">Morning! Crew arrives 8:30 tomorrow for day 2. Could you keep the driveway clear for the van?<small>Mauricios Painting · Today 7:42 AM</small></div>
             <div class="bubble me">Of course — cars are moved. The new color looks great already!<small>You · Today 8:05 AM</small></div>
-            <div class="bubble them">Thank you! Just uploaded today's first-coat photos above. 📸<small>Mauricios Painting · Today 1:18 PM</small></div>
+            <div class="bubble them">Thank you! Just uploaded today's first-coat photos above.<small>Mauricios Painting · Today 1:18 PM</small></div>
           </div>
           <div class="msginput"><input id="msg_text" placeholder="Message about your project…"><button id="msg_btn" type="button">Send</button></div>
         </div>
       </div>
       <div class="portal-side">
         <div class="inv">
-          <h4>💳 Your invoice — Sample</h4>
+          <h4><svg class="ic-sm"><use href="#i-card"/></svg> Your invoice — Sample</h4>
           <div class="row"><span>Residential repaint — Chen home</span><b>$4,800</b></div>
           <div class="row"><span>Deposit</span><span class="paid">$1,500 · Paid ✓</span></div>
           <div class="row"><span>Balance (due at completion)</span><span class="due">$3,300</span></div>
@@ -333,7 +362,7 @@ footer{max-width:1060px;margin:34px auto 0;padding:24px 18px 96px;border-top:1px
           <p style="font-size:12px;color:#b9c8d8;margin-top:9px">Secure payment by card or bank (Stripe). Receipt emailed automatically. Sample amounts — demo only.</p>
         </div>
         <div class="msg" style="margin-top:14px">
-          <b style="font-size:14.5px">📄 Your documents</b>
+          <b style="font-size:14.5px"><svg class="ic-sm"><use href="#i-doc"/></svg> Your documents</b>
           <p style="font-size:13.5px;color:var(--muted);margin-top:6px">✓ Approved quote &amp; scope<br>✓ Project questionnaire answers<br>✓ Receipts &amp; payment history<br>All in one place, any time.</p>
         </div>
       </div>
@@ -382,7 +411,7 @@ function render(){
   backBtn.style.visibility = cur===0?'hidden':'visible';
   nextBtn.textContent = cur===steps.length-1 ? 'Send My Request ✓' : 'Continue →';
   if(st.custom==='photos'){
-    qbody.innerHTML='<h4>'+st.q+'</h4><div class="filebox">📷 <b>Add photos of the space</b><br>Photos help us estimate faster and more accurately.<br><br><input type="file" id="photos" accept="image/*" multiple style="font:inherit"></div><div class="field" style="margin-top:13px"><label>Anything we should know? (colors, repairs, access — optional)</label><textarea id="notes" rows="3" placeholder="Example: walls need patching in the hallway, HOA color rules, pets at home…">'+(ans.notes||'')+'</textarea></div>';
+    qbody.innerHTML='<h4>'+st.q+'</h4><div class="filebox"><svg class="ic" style="color:var(--accent-d)"><use href="#i-camera"/></svg><br><b>Add photos of the space</b><br>Photos help us estimate faster and more accurately.<br><br><input type="file" id="photos" accept="image/*" multiple style="font:inherit"></div><div class="field" style="margin-top:13px"><label>Anything we should know? (colors, repairs, access — optional)</label><textarea id="notes" rows="3" placeholder="Example: walls need patching in the hallway, HOA color rules, pets at home…">'+(ans.notes||'')+'</textarea></div>';
     document.getElementById('photos').addEventListener('change',e=>{photoNames=[...e.target.files].map(f=>f.name)});
   } else if(st.custom==='contact'){
     qbody.innerHTML='<h4>'+st.q+'</h4>'+
@@ -396,7 +425,8 @@ function render(){
     qbody.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[st.key]=b.dataset.v;render();setTimeout(next,180)});
   }
 }
-function collect(){
+const qerr=document.getElementById('qerr');function qfail(m){qerr.textContent=m;qerr.classList.add('show')}function qclear(){qerr.classList.remove('show')}
+function collect(){qclear();
   const st=steps[cur];
   if(st.custom==='photos'){const n=document.getElementById('notes');if(n)ans.notes=n.value}
   if(st.custom==='contact'){
@@ -404,9 +434,9 @@ function collect(){
     ans.phone=document.getElementById('f_phone').value.trim();
     ans.addr=document.getElementById('f_addr').value.trim();
     ans.email=document.getElementById('f_email').value.trim();
-    if(!ans.name||!ans.phone){alert('Please add your name and mobile number so we can text your estimate.');return false}
+    if(!ans.name||!ans.phone){qfail('Add your name and mobile number — that is how we text back your estimate.');return false}
   }
-  if(!st.custom && !ans[st.key]){alert('Pick the closest option to continue.');return false}
+  if(!st.custom && !ans[st.key]){qfail('Pick the closest option to continue.');return false}
   return true;
 }
 function finish(){
@@ -416,10 +446,10 @@ function finish(){
   qbody.innerHTML='<div class="done"><div class="big">✓</div><h4>You are in, '+(ans.name.split(' ')[0]||'friend')+'.</h4><p style="color:var(--muted);margin:8px 0 16px">We just texted '+ans.phone+' a confirmation. Mauricios Painting will follow up with your estimate window — usually the same business day.</p></div><div class="summary">'+rows.map(r=>'<div><span>'+r[0]+'</span><b>'+(r[1]||'—')+'</b></div>').join('')+'</div>';
   const lead=document.getElementById('pipe-new');
   lead.innerHTML='<div class="lead"><b>'+ans.name+'</b><br>'+ans.type+' · '+ans.scope+'<br>'+ans.addr+'<br>⏱ '+ans.timeline+'<span class="tag">NEW · via questionnaire</span></div>';
-  document.getElementById('smsPreview').innerHTML='📱 <b>Instant alert to the owner:</b> “New quote request: '+ans.name+' — '+ans.type+', '+ans.scope+', '+ans.timeline+'. Photos: '+(photoNames.length||0)+'. Tap to call: '+ans.phone+'”';
+  document.getElementById('smsPreview').innerHTML='<b>Instant alert to the owner:</b> “New quote request: '+ans.name+' — '+ans.type+', '+ans.scope+', '+ans.timeline+'. Photos: '+(photoNames.length||0)+'. Tap to call: '+ans.phone+'”';
   document.querySelector('.owner').scrollIntoView({behavior:'smooth',block:'center'});
 }
-function next(){ if(!collect())return; if(cur<steps.length-1){cur++;render()} else {finish()} }
+function next(){ if(!collect())return; if(cur<steps.length-1){cur++;render();const qm=document.querySelector('.qmain');qm.classList.remove('swap');void qm.offsetWidth;qm.classList.add('swap')} else {finish()} }
 backBtn.onclick=()=>{if(cur>0){cur--;render()}};
 nextBtn.onclick=next;
 render();
