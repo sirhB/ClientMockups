@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ride Hys — App Redesign Concept · Hy's Limousine Worldwide</title>
+<meta name="description" content="Interactive redesign concept for the Ride Hys app: book a black car in taps, see the fare up front, watch your chauffeur arrive live.">
+<style>
+/* ============ Page tokens ============ */
+:root{
+  --paper:#f6f1e7; --paper2:#efe8d6; --card:#fffdf6;
+  --ink:#171512; --ink2:#3d3831; --mut:#6d6558;
+  --brass:#a8842c; --brass-dk:#7d6118; --brass-lt:#d9b36a;
+  --line:#ddd3bd; --line-dk:#2c2822;
+  --phone:#131110; --phone2:#1c1916; --phone3:#26211c;
+  --cream:#ede6d6; --cream2:#b9b0a0; --ok:#3f7d5a; --err:#a02318;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--brass);color:#fff}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(44px,5.4vw,72px);margin:18px 0 16px}
+h2{font-size:clamp(30px,3.4vw,44px);margin-bottom:12px}
+.lede{font-size:19px;color:var(--ink2);max-width:56ch}
+.byline{font-size:14px;color:var(--mut);letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin:-6px 0 14px}
+.small{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.muted{color:var(--mut)}
+
+/* ============ Header ============ */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;padding-bottom:16px}
+.wordmark{font-family:Georgia,serif;font-weight:700;font-size:26px;letter-spacing:.06em}
+.wordmark em{font-style:normal;color:var(--brass-dk)}
+.tag{border:1px solid var(--brass);color:var(--brass-dk);border-radius:999px;padding:5px 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+
+/* ============ Hero ============ */
+.hero{padding:56px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.hero-grid>*{min-width:0}
+.hero h1 .brass{color:var(--brass-dk)}
+.steps{list-style:none;margin:26px 0 8px;display:grid;gap:12px}
+.steps li{display:flex;gap:14px;align-items:baseline}
+.steps .n{font-family:Georgia,serif;font-weight:700;color:var(--brass-dk);font-size:20px;min-width:26px}
+.steps b{font-weight:700}
+.jump-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.jump{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:10px 16px;font-weight:700;font-size:14px}
+.jump:hover{background:var(--ink);color:var(--paper)}
+.jump.primary{background:var(--ink);color:var(--paper)}
+.jump.primary:hover{background:var(--brass-dk);border-color:var(--brass-dk)}
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;padding-top:20px;border-top:1px solid var(--line);list-style:none;font-size:14px;font-weight:600;color:var(--ink2)}
+.trust li::before{content:"— ";color:var(--brass-dk);font-weight:700}
+.why-mini{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.why-mini p{font-size:15px;color:var(--ink2)}
+.why-mini b{color:var(--ink)}
+.why-mini .stars{color:var(--brass-dk);font-weight:700}
+
+/* ============ Phone ============ */
+.phone-col{position:sticky;top:24px}
+.phone{width:390px;max-width:100%;margin:0 auto;background:var(--phone);color:var(--cream);
+  border-radius:48px;padding:12px;box-shadow:0 30px 70px rgba(23,21,18,.35),0 4px 14px rgba(23,21,18,.25)}
+.phone-screen{background:var(--phone);border-radius:38px;overflow:hidden;position:relative;height:780px;display:flex;flex-direction:column}
+.notch{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font-size:13px;font-weight:700;color:var(--cream)}
+.notch .pill{width:96px;height:22px;background:#000;border-radius:999px;margin:0 auto}
+.screen{flex:1;overflow-y:auto;padding:6px 20px 12px;display:none;scrollbar-width:thin;scrollbar-color:#3a342c transparent}
+.screen.active{display:block;animation:screenIn .26s var(--ease)}
+@keyframes screenIn{from{opacity:0;transform:translateY(8px);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
+.app-head{display:flex;align-items:baseline;justify-content:space-between;padding:8px 2px 2px}
+.app-head .wm{font-family:Georgia,serif;font-size:26px;font-weight:700;letter-spacing:.05em}
+.app-head .wm em{font-style:normal;color:var(--brass-lt)}
+.app-head .since{font-size:12px;color:var(--cream2);letter-spacing:.12em;text-transform:uppercase}
+.greet{font-family:Georgia,serif;font-size:28px;margin:10px 2px 2px}
+.greet-sub{color:var(--cream2);font-size:14px;margin:0 2px 16px}
+.seg{display:flex;background:var(--phone3);border-radius:999px;padding:4px;margin:0 0 16px}
+.seg button{flex:1;border:0;background:transparent;color:var(--cream2);border-radius:999px;padding:9px 0;font-weight:700;font-size:14px}
+.seg button.on{background:var(--brass-lt);color:#171512}
+.field{background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.field label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream2);font-weight:700;margin-bottom:4px}
+.field input,.field select{width:100%;background:transparent;border:0;color:var(--cream);font:inherit;font-size:16px}
+.field input::placeholder{color:#7d766a}
+.field-row{display:flex;gap:10px}
+.field-row .field{flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+.chip{border:1px solid #3a342c;background:transparent;color:var(--cream);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:700}
+.chip:hover{border-color:var(--brass-lt);color:var(--brass-lt)}
+.chip.on{background:var(--brass-lt);border-color:var(--brass-lt);color:#171512}
+.car-pick{display:flex;gap:12px;align-items:center;background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:13px 14px;width:100%;text-align:left;color:var(--cream)}
+.car-pick .ic{color:var(--brass-lt)}
+.car-pick .nm{font-weight:700;font-size:16px}
+.car-pick .meta{font-size:13px;color:var(--cream2)}
+.car-pick .fare{margin-left:auto;text-align:right;font-weight:700;flex:none}
+.car-pick .fare small{display:block;font-weight:400;color:var(--cream2);font-size:12px;white-space:nowrap}
+.car-pick>span:nth-child(2){flex:1;min-width:0}
+.cta{display:block;width:100%;border:0;border-radius:999px;background:var(--brass-lt);color:#171512;font-weight:800;font-size:16px;padding:15px;margin-top:14px}
+.cta:active{transform:scale(.97)}
+.cta.ghost{background:transparent;border:1px solid #3a342c;color:var(--cream)}
+.cta-row{display:flex;gap:10px}
+.cta-row .cta{flex:1}
+.note{font-size:12px;color:var(--cream2);text-align:center;margin-top:10px}
+.upcoming{margin-top:18px;border-top:1px solid var(--line-dk);padding-top:14px}
+.upcoming .sec-t,.sec-t{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream2);font-weight:700;margin-bottom:10px}
+.trip-row{display:flex;gap:12px;background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:13px 14px;width:100%;text-align:left;color:var(--cream);margin-bottom:10px}
+.trip-row .when{font-weight:700;white-space:nowrap}
+.trip-row .route{font-size:14px}
+.trip-row .sub{font-size:13px;color:var(--cream2)}
+.trip-row .amt{margin-left:auto;font-weight:700;white-space:nowrap}
+
+/* Cars list */
+.car-list{display:grid;gap:10px;margin-top:6px}
+.car-item{display:flex;gap:12px;background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:13px 14px;width:100%;text-align:left;color:var(--cream)}
+.car-item.sel{border-color:var(--brass-lt);box-shadow:0 0 0 1px var(--brass-lt)}
+.car-item .ic{color:var(--brass-lt)}
+.car-item .nm{font-weight:700;font-size:16px}
+.car-item .ds{font-size:13px;color:var(--cream2)}
+.car-item .fare{margin-left:auto;text-align:right;font-weight:700;white-space:nowrap}
+.car-item .fare small{display:block;font-weight:400;color:var(--cream2);font-size:12px}
+.back{border:0;background:transparent;color:var(--brass-lt);font-weight:700;padding:6px 0;font-size:14px}
+.screen h2.ph{font-family:Georgia,serif;font-size:26px;color:var(--cream);margin:6px 0 4px}
+.screen .ph-sub{color:var(--cream2);font-size:14px;margin-bottom:14px}
+
+/* Map + live */
+.map-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--line-dk);margin-bottom:14px}
+.map-wrap svg{display:block;width:100%;height:auto}
+.driver{display:flex;gap:12px;align-items:center;background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:13px 14px;margin-bottom:12px}
+.avatar{width:48px;height:48px;border-radius:50%;background:var(--brass-lt);color:#171512;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex:none}
+.driver .nm{font-weight:700;font-size:16px}
+.driver .sub{font-size:13px;color:var(--cream2)}
+.driver .veh{margin-left:auto;text-align:right;font-size:12px;color:var(--cream2);white-space:nowrap;flex:none}
+.driver .veh b{display:block;color:var(--cream);font-size:14px}
+.timeline{list-style:none;margin:4px 0 14px}
+.timeline li{display:flex;gap:12px;padding:9px 0;color:var(--cream2);font-size:14px}
+.timeline .dot{width:14px;height:14px;border-radius:50%;border:2px solid #4a443a;flex:none;margin-top:3px;background:transparent}
+.timeline li.done{color:var(--cream)}
+.timeline li.done .dot{background:var(--brass-lt);border-color:var(--brass-lt)}
+.timeline li.now{color:var(--cream);font-weight:700}
+.timeline li.now .dot{border-color:var(--brass-lt);box-shadow:0 0 0 4px rgba(217,179,106,.25)}
+.eta{font-family:Georgia,serif;font-size:22px;margin:2px 0 2px}
+.eta-sub{color:var(--cream2);font-size:13px;margin-bottom:12px}
+.receipt{background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:14px;margin-bottom:12px}
+.receipt .row{display:flex;justify-content:space-between;padding:5px 0;font-size:14px}
+.receipt .row.tot{border-top:1px solid var(--line-dk);margin-top:6px;padding-top:10px;font-weight:800;font-size:16px}
+.acct-row{display:flex;justify-content:space-between;gap:12px;background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:13px 14px;width:100%;text-align:left;color:var(--cream);margin-bottom:10px;font-size:15px}
+.acct-row small{display:block;color:var(--cream2);font-size:13px}
+.acct-row .chev{color:var(--cream2)}
+
+/* Tab bar */
+.tabbar{display:flex;border-top:1px solid var(--line-dk);background:var(--phone);padding:8px 6px calc(10px + env(safe-area-inset-bottom))}
+.tabbar button{flex:1;border:0;background:transparent;color:var(--cream2);font-size:11px;font-weight:700;padding:4px 0}
+.tabbar button .ti{display:block;line-height:1.2}
+.tabbar .ti svg{display:block;margin:0 auto}
+.ic svg{display:block}
+.tabbar button.on{color:var(--brass-lt)}
+
+/* ============ Sections ============ */
+section.block{padding:64px 0;border-top:1px solid var(--line)}
+.fleet-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:28px}
+.fleet-cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 14px}
+.fleet-cell .ic{color:var(--brass-dk)}
+.fleet-cell h3{font-size:16px;margin:8px 0 4px;line-height:1.25}
+.fleet-cell p{font-size:13px;color:var(--mut)}
+.fleet-cell .from{margin-top:10px;font-weight:800;font-size:14px}
+.fleet-cell .from small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.compare .col{border-radius:14px;padding:22px}
+.compare .old{background:var(--paper2);border:1px solid var(--line)}
+.compare .new{background:var(--ink);color:var(--cream)}
+.compare .new p{color:#cfc7b8}
+.compare h3{font-size:20px;margin-bottom:10px}
+.compare ul{list-style:none;display:grid;gap:8px;font-size:15px}
+.compare ul li::before{content:"— ";color:var(--brass-dk);font-weight:700}
+.compare .new ul li::before{color:var(--brass-lt)}
+footer{border-top:1px solid var(--line);padding:28px 0 44px;font-size:13px;color:var(--mut)}
+footer p{max-width:76ch}
+footer p+p{margin-top:8px}
+/* ============ Phone mode switch (Rider / Driver) ============ */
+.mode-switch{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;margin:0 auto 14px;width:390px;max-width:100%}
+.mode-switch button{flex:1;border:0;background:transparent;border-radius:999px;padding:10px 0;font-weight:800;font-size:14px;color:var(--ink2)}
+.mode-switch button.on{background:var(--ink);color:var(--paper)}
+.mode-switch button small{display:block;font-weight:400;font-size:11px;opacity:.75}
+
+/* ============ Driver screens ============ */
+.switch-row{display:flex;align-items:center;justify-content:space-between;background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:14px;margin-bottom:12px}
+.switch-row .nm{font-weight:700;font-size:16px}
+.switch-row .sub{font-size:13px;color:var(--cream2)}
+.switch{position:relative;width:56px;height:32px;flex:none;border:0;border-radius:999px;background:#3a342c;padding:0}
+.switch::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:var(--cream)}
+.switch.on{background:var(--brass-lt)}
+.switch.on::after{left:28px;background:#171512}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.stat{background:var(--phone2);border:1px solid var(--line-dk);border-radius:14px;padding:12px 10px;text-align:center}
+.stat b{display:block;font-family:Georgia,serif;font-size:22px}
+.stat span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cream2);font-weight:700}
+.req-card{background:var(--phone2);border:1px solid var(--brass-lt);border-radius:16px;padding:16px;margin-bottom:12px}
+.req-card .fare-big{font-family:Georgia,serif;font-size:30px;margin:4px 0}
+.count{font-family:Georgia,serif;font-size:22px;color:var(--brass-lt)}
+.req-route{font-size:15px;line-height:1.6;margin:8px 0}
+.req-route b{display:block}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700}
+.pill.ok{background:rgba(63,125,90,.25);color:#8fceab}
+.pill.warn{background:rgba(217,179,106,.18);color:var(--brass-lt)}
+.pill.dim{background:#2c2822;color:var(--cream2)}
+.nav-steps{list-style:none;margin:4px 0 14px}
+.nav-steps li{display:flex;gap:12px;padding:10px 0;font-size:15px;color:var(--cream2)}
+.nav-steps li.done{color:var(--cream)}
+.nav-steps li.done .dot{background:var(--brass-lt);border-color:var(--brass-lt)}
+.nav-steps li.now{color:var(--cream);font-weight:700}
+.nav-steps li.now .dot{border-color:var(--brass-lt);box-shadow:0 0 0 4px rgba(217,179,106,.25)}
+.nav-steps .dot{width:14px;height:14px;border-radius:50%;border:2px solid #4a443a;flex:none;margin-top:3px}
+
+/* ============ Control Center ============ */
+.cc{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(23,21,18,.16)}
+.cc-top{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--card)}
+.cc-top .dots{display:flex;gap:6px}
+.cc-top .dots i{width:11px;height:11px;border-radius:50%;background:#d8cfb8;display:block}
+.cc-top .dots i:first-child{background:#c98a7a}.cc-top .dots i:nth-child(2){background:#d9b36a}.cc-top .dots i:nth-child(3){background:#8fceab}
+.cc-top b{font-family:Georgia,serif;font-size:18px}
+.cc-top .live{margin-left:auto;font-size:13px;font-weight:700;color:var(--ok)}
+.cc-top .live::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px}
+.cc-body{display:grid;grid-template-columns:190px 1fr;min-height:560px}
+.cc-side{border-right:1px solid var(--line);padding:16px 10px;background:var(--paper2)}
+.cc-side button{display:block;width:100%;text-align:left;border:0;background:transparent;border-radius:10px;padding:10px 12px;font-weight:700;font-size:14px;color:var(--ink2);margin-bottom:2px}
+.cc-side button.on{background:var(--ink);color:var(--paper)}
+.cc-side button small{display:block;font-weight:400;font-size:12px;opacity:.75}
+.cc-main{padding:20px 22px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font-family:Georgia,serif;font-size:28px}
+.kpi span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.kpi small{display:block;font-size:12px;color:var(--mut);margin-top:2px}
+.cc-map{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.cc-map svg{display:block;width:100%;height:auto}
+.cc-cols{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start}
+.cc-panel h3{font-size:16px;margin-bottom:10px}
+.board-row{display:grid;grid-template-columns:74px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;width:100%;text-align:left;margin-bottom:8px;color:var(--ink)}
+.board-row.sel{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass)}
+.board-row .id{font-weight:800;font-size:13px}
+.board-row .rt{font-size:14px}
+.board-row .sb{font-size:12px;color:var(--mut)}
+.board-row .st{text-align:right}
+.board-row .eta{font-size:12px;color:var(--mut);display:block;margin-top:2px}
+.chip-f{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:7px 13px;font-weight:700;font-size:13px}
+.chip-f.on{background:var(--ink);color:var(--paper)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.detail{background:var(--ink);color:var(--cream);border-radius:14px;padding:16px 18px;margin-top:4px}
+.detail h4{font-family:Georgia,serif;font-size:19px;margin-bottom:4px}
+.detail p{font-size:13px;color:#cfc7b8;margin-bottom:12px}
+.detail .row{display:flex;gap:8px}
+.detail .btn{flex:1;border:1px solid #4a443a;background:transparent;color:var(--cream);border-radius:999px;padding:9px 0;font-weight:700;font-size:13px}
+.detail .btn.go{background:var(--brass-lt);border-color:var(--brass-lt);color:#171512}
+.chauf{display:flex;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid var(--line);font-size:14px}
+.chauf:last-child{border-bottom:0}
+.chauf .av{width:34px;height:34px;border-radius:50%;background:var(--paper2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex:none}
+.chauf .nm{font-weight:700}
+.chauf .sb{font-size:12px;color:var(--mut)}
+.chauf .pill{margin-left:auto}
+@media (max-width:960px){
+  .cc-body{grid-template-columns:1fr}
+  .cc-side{display:flex;overflow-x:auto;padding:10px}
+  .cc-side button{white-space:nowrap;width:auto}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .cc-cols{grid-template-columns:1fr}
+}
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .phone-col{position:static}
+  .fleet-grid{grid-template-columns:repeat(2,1fr)}
+  .compare{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .wrap{padding:0 18px}
+  .fleet-grid{grid-template-columns:1fr 1fr}
+  .phone{width:100%}
+  .phone-screen{height:740px}
+  .topbar .tag{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="wordmark">HY&rsquo;S <em>&middot;</em> RIDE HYS</div>
+    <span class="tag">App redesign concept</span>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<div class="hero"><div class="wrap"><div class="hero-grid">
+  <div>
+    <h1>Your black car, <span class="brass">booked like a flight.</span></h1>
+    <p class="byline">Hy&rsquo;s Limousine Worldwide &middot; West Haven, CT &middot; Since 1951</p>
+    <p class="lede">One system, three sides: the rider books in taps, the chauffeur drives the trip, and dispatch watches the whole fleet live. The Ride Hys app, rebuilt around the trip itself.</p>
+    <ol class="steps">
+      <li><span class="n">1</span><span><b>Rider books.</b> Pick your airports, choose the car, see the fare before you confirm.</span></li>
+      <li><span class="n">2</span><span><b>Chauffeur drives.</b> The trip lands on the driver&rsquo;s phone &mdash; accept, navigate, complete, get paid.</span></li>
+      <li><span class="n">3</span><span><b>Dispatch watches.</b> Every car, every trip, every pickup on one live board &mdash; no radio, no whiteboard.</span></li>
+    </ol>
+    <div class="jump-row">
+      <button class="jump primary" data-goto="book">Try booking</button>
+      <button class="jump" data-mode="driver" data-goto="d-home">Driver app</button>
+      <button class="jump" data-goto="live">See a live trip</button>
+      <a class="jump" href="#control" style="text-decoration:none">Control center</a>
+    </div>
+    <ul class="trust">
+      <li>No surge pricing</li>
+      <li>No cancelled rides</li>
+      <li>Professional chauffeurs</li>
+      <li>On-time pickups</li>
+    </ul>
+    <div class="why-mini">
+      <p><b>Why rebuild it?</b> The current Ride Hys app sits at <span class="stars">2.0&starf; (8 ratings)</span> on the App Store, running a generic white-label shell from 2015. Hy&rsquo;s has spent 75 years earning trust in person &mdash; the app should feel like the car, not like a form.</p>
+    </div>
+  </div>
+
+  <!-- ================= PHONE ================= -->
+  <div class="phone-col">
+    <div class="mode-switch" role="group" aria-label="Choose app side">
+      <button type="button" id="modeRider" class="on">Rider app<small>Book &amp; ride</small></button>
+      <button type="button" id="modeDriver">Driver app<small>Chauffeur side</small></button>
+    </div>
+    <div class="phone" role="region" aria-label="Ride Hys app prototype">
+      <div class="phone-screen">
+        <div class="notch"><span>9:41</span><span class="pill" aria-hidden="true"></span><span>5G</span></div>
+
+        <!-- BOOK -->
+        <div class="screen active" id="screen-book">
+          <div class="app-head"><span class="wm">HY&rsquo;S</span><span class="since">Since 1951</span></div>
+          <p class="greet">Good morning.</p>
+          <p class="greet-sub">Where can we take you today?</p>
+          <div class="seg" role="group" aria-label="When">
+            <button id="segNow" class="on" type="button">Now</button>
+            <button id="segLater" type="button">Schedule</button>
+          </div>
+          <div class="field"><label for="pickup">Pickup</label>
+            <input id="pickup" value="480 Island Ln, West Haven" autocomplete="off">
+          </div>
+          <div class="field"><label for="dropoff">Drop-off</label>
+            <input id="dropoff" value="JFK Airport — Terminal 4" autocomplete="off">
+          </div>
+          <div class="field-row" id="schedRow" hidden>
+            <div class="field"><label for="tripDate">Date</label><input id="tripDate" type="date"></div>
+            <div class="field"><label for="tripTime">Time</label><input id="tripTime" type="time" value="09:00"></div>
+          </div>
+          <div class="chips" id="airportChips" aria-label="Airports">
+            <button class="chip on" type="button" data-airport="JFK Airport — Terminal 4">JFK</button>
+            <button class="chip" type="button" data-airport="LaGuardia Airport — Terminal B">LGA</button>
+            <button class="chip" type="button" data-airport="Newark Airport — Terminal C">EWR</button>
+            <button class="chip" type="button" data-airport="Westchester County Airport">HPN</button>
+            <button class="chip" type="button" data-airport="Bradley Airport — Terminal A">BDL</button>
+          </div>
+          <button class="car-pick" type="button" id="carPickBtn">
+            <span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span>
+            <span><span class="nm" id="pickCarName">Executive Sedan</span><br><span class="meta" id="pickCarMeta">3 guests · 2 bags · about 6 min away</span></span>
+            <span class="fare"><span id="pickCarFare">$145</span><small>sample fare</small></span>
+          </button>
+          <button class="cta" type="button" id="seeCarsBtn">See cars &amp; fares</button>
+          <div class="upcoming">
+            <p class="sec-t">Upcoming</p>
+            <button class="trip-row" type="button" data-goto="live">
+              <span class="when" id="upWhen">Today<br>2:30 PM</span>
+              <span><span class="route">West Haven &rarr; JFK Airport</span><br><span class="sub">Executive Sedan · Daniel M. · Confirmed</span></span>
+              <span class="amt">$145</span>
+            </button>
+          </div>
+          <p class="note">Fares shown are samples for this preview.</p>
+        </div>
+
+        <!-- CARS -->
+        <div class="screen" id="screen-cars">
+          <button class="back" type="button" data-goto="book">&larr; Back to booking</button>
+          <h2 class="ph">Choose your car</h2>
+          <p class="ph-sub">Seven Hy&rsquo;s vehicle classes. Fare shown before you confirm &mdash; no surge, ever.</p>
+          <div class="car-list" id="carList"></div>
+          <button class="cta" type="button" id="continueBtn">Continue to review</button>
+          <p class="note">Sample fares for this preview &mdash; the live app quotes Hy&rsquo;s own pricing.</p>
+        </div>
+
+        <!-- REVIEW -->
+        <div class="screen" id="screen-review">
+          <button class="back" type="button" data-goto="cars">&larr; Change car</button>
+          <h2 class="ph">Review your trip</h2>
+          <p class="ph-sub" id="reviewWhen">Today · Now</p>
+          <div class="receipt">
+            <div class="row"><span>From</span><b id="revFrom">480 Island Ln, West Haven</b></div>
+            <div class="row"><span>To</span><b id="revTo">JFK Airport — Terminal 4</b></div>
+            <div class="row"><span>Vehicle</span><b id="revCar">Executive Sedan</b></div>
+            <div class="row"><span>Guests / bags</span><b id="revCap">3 / 2</b></div>
+            <div class="row tot"><span>Total</span><span id="revTotal">$145</span></div>
+          </div>
+          <p class="ph-sub" style="margin-bottom:0">No surge pricing. No cancelled rides. Your chauffeur is assigned the moment you confirm.</p>
+          <button class="cta" type="button" id="confirmBtn">Confirm booking</button>
+          <button class="cta ghost" type="button" data-goto="cars">Back</button>
+          <p class="note">Demo only &mdash; nothing is booked or charged.</p>
+        </div>
+
+        <!-- LIVE -->
+        <div class="screen" id="screen-live">
+          <button class="back" type="button" data-goto="trips">&larr; My trips</button>
+          <h2 class="ph" id="liveTitle">Your chauffeur is on the way</h2>
+          <p class="eta" id="liveEta">Arriving in 6 min</p>
+          <p class="eta-sub" id="liveEtaSub">Daniel M. · Black Cadillac Escalade · HYS·1951</p>
+          <div class="map-wrap">
+            <svg viewBox="0 0 340 300" role="img" aria-label="Map showing your chauffeur's route to the pickup point">
+              <rect width="340" height="300" fill="#1c1916"/>
+              <g stroke="#2e2921" stroke-width="14" stroke-linecap="round">
+                <path d="M-10 70 H350"/><path d="M-10 150 H350"/><path d="M-10 230 H350"/>
+                <path d="M60 -10 V310"/><path d="M150 -10 V310"/><path d="M240 -10 V310"/>
+              </g>
+              <g stroke="#3a342c" stroke-width="2">
+                <path d="M-10 110 H350"/><path d="M-10 190 H350"/><path d="M105 -10 V310"/><path d="M195 -10 V310"/><path d="M285 -10 V310"/>
+              </g>
+              <path d="M40 250 C 80 225, 95 185, 130 160 S 215 120, 250 82 S 295 55, 305 42" fill="none" stroke="#d9b36a" stroke-width="3" stroke-dasharray="7 6" id="routePath"/>
+              <g font-family="Georgia,serif" font-size="11" fill="#b9b0a0">
+                <text x="14" y="62">Island Ln</text><text x="160" y="142">Boston Post Rd</text><text x="14" y="222">Saw Mill Rd</text>
+              </g>
+              <g id="destPin"><circle cx="305" cy="42" r="9" fill="#d9b36a"/><text x="305" y="30" text-anchor="middle" font-size="11" fill="#ede6d6" font-weight="700">JFK</text></g>
+              <g id="pickPin"><circle cx="40" cy="250" r="9" fill="#ede6d6"/><circle cx="40" cy="250" r="3.5" fill="#131110"/></g>
+              <g id="carDot"><circle r="11" fill="#d9b36a" stroke="#131110" stroke-width="2.5"/><text y="4" text-anchor="middle" font-size="11" font-weight="800" fill="#131110">H</text></g>
+            </svg>
+          </div>
+          <div class="driver">
+            <span class="avatar" aria-hidden="true">DM</span>
+            <span><span class="nm">Daniel M.</span><br><span class="sub">Your chauffeur · sample profile</span></span>
+            <span class="veh"><b>Escalade · HYS·1951</b>Black · 2025</span>
+          </div>
+          <ol class="timeline" id="timeline">
+            <li class="done"><span class="dot"></span>Booking confirmed</li>
+            <li class="now" id="tl2"><span class="dot"></span>Chauffeur en route to you</li>
+            <li id="tl3"><span class="dot"></span>Arriving at pickup</li>
+            <li id="tl4"><span class="dot"></span>On trip to JFK Airport</li>
+          </ol>
+          <div class="cta-row">
+            <a class="cta" href="tel:+12039346331" style="text-align:center;text-decoration:none">Call chauffeur</a>
+            <button class="cta ghost" type="button" id="replayBtn">Replay route</button>
+          </div>
+          <button class="cta" type="button" id="completeBtn" style="margin-top:10px">Complete trip (demo)</button>
+          <p class="note">Need help? Call Hy&rsquo;s: 800-255-LIMO (5466)</p>
+        </div>
+
+        <!-- TRIPS -->
+        <div class="screen" id="screen-trips">
+          <h2 class="ph">My trips</h2>
+          <p class="ph-sub">Every booking and receipt, in one place.</p>
+          <div id="tripCompleteBanner" hidden>
+            <div class="receipt" style="border-color:var(--brass-lt)">
+              <div class="row"><span>Trip complete</span><b>Thank you for riding Hy&rsquo;s</b></div>
+              <div class="row"><span>Route</span><b id="rcRoute">West Haven &rarr; JFK</b></div>
+              <div class="row"><span>Vehicle</span><b id="rcCar">Executive Sedan</b></div>
+              <div class="row tot"><span>Total</span><span id="rcTotal">$145</span></div>
+            </div>
+          </div>
+          <p class="sec-t">Upcoming</p>
+          <button class="trip-row" type="button" data-goto="live">
+            <span class="when">Today<br>2:30 PM</span>
+            <span><span class="route">West Haven &rarr; JFK Airport</span><br><span class="sub" id="upSub">Executive Sedan · Confirmed</span></span>
+            <span class="amt" id="upAmt">$145</span>
+          </button>
+          <p class="sec-t">Past</p>
+          <div class="trip-row"><span class="when">Nov 8<br>7:10 AM</span><span><span class="route">Greenwich &rarr; LaGuardia</span><br><span class="sub">Luxury SUV · Completed</span></span><span class="amt">$185</span></div>
+          <div class="trip-row"><span class="when">Oct 29<br>5:45 PM</span><span><span class="route">Hartford &rarr; Bradley</span><br><span class="sub">Executive Sedan · Completed</span></span><span class="amt">$145</span></div>
+          <div class="trip-row"><span class="when">Oct 17<br>9:00 AM</span><span><span class="route">New Haven &rarr; Newark</span><br><span class="sub">Stretch Limousine · Completed</span></span><span class="amt">$295</span></div>
+          <p class="note">Past trips are sample data for this preview.</p>
+        </div>
+
+        <!-- ACCOUNT -->
+        <div class="screen" id="screen-account">
+          <h2 class="ph">Account</h2>
+          <p class="ph-sub">Alex Morgan &middot; sample profile</p>
+          <button class="acct-row" type="button"><span>Payment<small>Visa &bull;&bull; 4242 &middot; sample</small></span><span class="chev">&rsaquo;</span></button>
+          <button class="acct-row" type="button"><span>Home &amp; work<small>Home: 480 Island Ln, West Haven</small></span><span class="chev">&rsaquo;</span></button>
+          <button class="acct-row" type="button"><span>Notifications<small>Chauffeur updates, receipts</small></span><span class="chev">&rsaquo;</span></button>
+          <a class="acct-row" href="tel:+18002555466" style="text-decoration:none"><span>Call Hy&rsquo;s<small>800-255-LIMO (5466) &middot; 24/7</small></span><span class="chev">&rsaquo;</span></a>
+          <a class="acct-row" href="mailto:Reserve@hyslimo.com" style="text-decoration:none"><span>Email reservations<small>Reserve@hyslimo.com</small></span><span class="chev">&rsaquo;</span></a>
+          <div class="upcoming">
+            <p class="sec-t">Hy&rsquo;s offices</p>
+            <p style="font-size:14px;color:var(--cream2)">West Haven &middot; Greenwich &middot; New Haven &middot; Hartford, CT<br>Serving hundreds of cities worldwide since 1951.</p>
+          </div>
+        </div>
+
+        <!-- DRIVER: HOME -->
+        <div class="screen" id="screen-d-home">
+          <div class="app-head"><span class="wm">HY&rsquo;S <em>DRIVER</em></span><span class="since">Chauffeur</span></div>
+          <p class="greet">Daniel M.</p>
+          <p class="greet-sub">Black Cadillac Escalade · HYS·1951</p>
+          <div class="switch-row">
+            <span><span class="nm" id="onlineLabel">You&rsquo;re online</span><br><span class="sub" id="onlineSub">New trips can reach you</span></span>
+            <button class="switch on" type="button" id="onlineToggle" role="switch" aria-checked="true" aria-label="Go online or offline"></button>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><b id="statTrips">6</b><span>Trips today</span></div>
+            <div class="stat"><b id="statEarn">$412</b><span>Earnings</span></div>
+            <div class="stat"><b>4.9</b><span>Rating</span></div>
+          </div>
+          <p class="sec-t">Next assignment</p>
+          <button class="trip-row" type="button" data-goto="d-trip">
+            <span class="when">4:15 PM<br>HY-1045</span>
+            <span><span class="route">Hartford &rarr; Bradley Airport</span><br><span class="sub">Stretch Limousine · Sam K. · Scheduled</span></span>
+            <span class="amt">$295</span>
+          </button>
+          <button class="cta" type="button" id="simRequestBtn">Simulate incoming request</button>
+          <p class="note">Driver profile, trips and earnings are sample data.</p>
+        </div>
+
+        <!-- DRIVER: INCOMING REQUEST -->
+        <div class="screen" id="screen-d-request">
+          <button class="back" type="button" data-goto="d-home">&larr; Back</button>
+          <h2 class="ph">New trip request</h2>
+          <p class="ph-sub">Respond in <span class="count" id="reqCount">0:20</span> or it goes to the next chauffeur.</p>
+          <div class="req-card">
+            <span class="pill ok">Executive Sedan</span>
+            <p class="req-route"><b>Alex M. · 2 guests · 2 bags</b>480 Island Ln, West Haven &rarr; JFK Airport, Terminal 4</p>
+            <p class="req-route" style="color:var(--cream2);font-size:13px">Pickup in 6 min · 58 mi · about 1 hr 10 min</p>
+            <p class="fare-big">$145</p>
+            <p style="font-size:13px;color:var(--cream2)">Your share $116 · sample fare</p>
+          </div>
+          <button class="cta" type="button" id="acceptBtn">Accept trip</button>
+          <button class="cta ghost" type="button" id="declineBtn">Decline</button>
+          <p class="note" id="reqNote">Accepting notifies the rider and dispatch at once.</p>
+        </div>
+
+        <!-- DRIVER: ACTIVE TRIP -->
+        <div class="screen" id="screen-d-trip">
+          <button class="back" type="button" data-goto="d-home">&larr; Home</button>
+          <h2 class="ph" id="dTripTitle">Active trip · HY-1042</h2>
+          <p class="eta" id="dTripEta">Pickup in 6 min</p>
+          <p class="eta-sub">Alex M. · 2 guests · 2 bags · $145</p>
+          <div class="driver">
+            <span class="avatar" aria-hidden="true">AM</span>
+            <span><span class="nm">Alex M.</span><br><span class="sub">Rider · sample profile</span></span>
+            <span class="veh"><b>Executive Sedan</b>West Haven &rarr; JFK</span>
+          </div>
+          <ol class="nav-steps" id="dSteps">
+            <li class="now" id="ds1"><span class="dot"></span>Drive to pickup — 480 Island Ln</li>
+            <li id="ds2"><span class="dot"></span>Rider on board</li>
+            <li id="ds3"><span class="dot"></span>Drop-off — JFK Terminal 4</li>
+          </ol>
+          <div class="cta-row">
+            <a class="cta" href="tel:+12039346331" style="text-align:center;text-decoration:none">Call rider</a>
+            <button class="cta ghost" type="button" id="msgRiderBtn">Message</button>
+          </div>
+          <button class="cta" type="button" id="dNextBtn" style="margin-top:10px">Arrived at pickup</button>
+          <p class="note" id="dTripNote">Dispatch sees every step as it happens.</p>
+        </div>
+
+        <!-- DRIVER: TODAY'S TRIPS -->
+        <div class="screen" id="screen-d-trips">
+          <h2 class="ph">Today&rsquo;s trips</h2>
+          <p class="ph-sub">6 trips · $412 earned · sample data</p>
+          <div class="trip-row"><span class="when">7:10 AM<br>HY-1038</span><span><span class="route">Greenwich &rarr; LaGuardia</span><br><span class="sub">Luxury SUV · Completed</span></span><span class="amt">$185</span></div>
+          <div class="trip-row"><span class="when">9:40 AM<br>HY-1039</span><span><span class="route">New Haven &rarr; Newark</span><br><span class="sub">Executive Sedan · Completed</span></span><span class="amt">$148</span></div>
+          <div class="trip-row"><span class="when">12:05 PM<br>HY-1040</span><span><span class="route">West Haven &rarr; JFK</span><br><span class="sub">Executive Sedan · Completed</span></span><span class="amt">$145</span></div>
+          <div class="trip-row"><span class="when">2:30 PM<br>HY-1042</span><span><span class="route">West Haven &rarr; JFK</span><br><span class="sub" id="dTripRowSub">Executive Sedan · On trip</span></span><span class="amt">$145</span></div>
+          <p class="sec-t">Up next</p>
+          <div class="trip-row"><span class="when">4:15 PM<br>HY-1045</span><span><span class="route">Hartford &rarr; Bradley</span><br><span class="sub">Stretch Limousine · Scheduled</span></span><span class="amt">$295</span></div>
+          <p class="note">Trips sync to dispatch the moment they change.</p>
+        </div>
+
+        <!-- DRIVER: EARNINGS -->
+        <div class="screen" id="screen-d-earn">
+          <h2 class="ph">Earnings</h2>
+          <p class="ph-sub">Week of Nov 10 · sample data</p>
+          <div class="receipt">
+            <div class="row"><span>Today (6 trips)</span><b id="earnToday">$412</b></div>
+            <div class="row"><span>This week</span><b>$2,180</b></div>
+            <div class="row"><span>Tips</span><b>$96</b></div>
+            <div class="row tot"><span>Next payout · Friday</span><span>$2,180</span></div>
+          </div>
+          <p class="ph-sub">Payout goes to your linked account every Friday. No chasing dispatch for what you&rsquo;re owed.</p>
+          <button class="cta ghost" type="button" data-goto="d-trips">See today&rsquo;s trips</button>
+        </div>
+
+        <!-- TAB BAR -->
+        <nav class="tabbar" id="riderTabs" aria-label="App sections">
+          <button type="button" class="on" data-goto="book"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 L10 3.5 L17 10.5"/><path d="M5 9.5 V17 H15 V9.5"/></svg></span>Book</button>
+          <button type="button" data-goto="cars"><span class="ti"><svg width="22" height="14" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" style="margin-top:3px"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span>Cars</button>
+          <button type="button" data-goto="live"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 18 C10 18 4.5 12.5 4.5 8.5 a5.5 5.5 0 1 1 11 0 C15.5 12.5 10 18 10 18 Z"/><circle cx="10" cy="8.5" r="1.8"/></svg></span>Live</button>
+          <button type="button" data-goto="trips"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 5.5 H16 M4 10 H16 M4 14.5 H10"/></svg></span>Trips</button>
+          <button type="button" data-goto="account"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="6.5" r="3"/><path d="M3.5 17 C4.5 13.5 7 12.5 10 12.5 C13 12.5 15.5 13.5 16.5 17"/></svg></span>Account</button>
+        </nav>
+        <nav class="tabbar" id="driverTabs" aria-label="Driver sections" hidden>
+          <button type="button" class="on" data-goto="d-home"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 L10 3.5 L17 10.5"/><path d="M5 9.5 V17 H15 V9.5"/></svg></span>Home</button>
+          <button type="button" data-goto="d-trips"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 5.5 H16 M4 10 H16 M4 14.5 H10"/></svg></span>Trips</button>
+          <button type="button" data-goto="d-earn"><span class="ti"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="6.5" r="3"/><path d="M3.5 17 C4.5 13.5 7 12.5 10 12.5 C13 12.5 15.5 13.5 16.5 17"/></svg></span>Earnings</button>
+        </nav>
+      </div>
+    </div>
+    <p class="note" style="color:var(--mut);margin-top:12px">Interactive prototype &mdash; switch Rider / Driver above the phone, tap the tabs, confirm a trip and watch it land in the Control Center below.</p>
+  </div>
+</div></div></div>
+
+<!-- ================= FLEET ================= -->
+<section class="block"><div class="wrap">
+  <p class="small" style="color:var(--brass-dk)">The fleet &middot; over 100 late-model vehicles</p>
+  <h2>Seven cars. One standard.</h2>
+  <p class="lede">Every class Hy&rsquo;s actually runs, with seats, bags and a fare before you book &mdash; the way a traveler chooses, not the way a dispatch form asks.</p>
+  <div class="fleet-grid">
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Executive Sedan</h3><p>3 guests · 2 bags. The everyday executive ride.</p><p class="from">from $145<small>sample fare</small></p></div>
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Luxury SUV</h3><p>6 guests · 6 bags. Escalade room for the whole party.</p><p class="from">from $185<small>sample fare</small></p></div>
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Stretch Limousine</h3><p>8 guests · 4 bags. The classic, for the night itself.</p><p class="from">from $295<small>sample fare</small></p></div>
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Super Stretch</h3><p>10 guests · 6 bags. Weddings, proms, big nights out.</p><p class="from">from $395<small>sample fare</small></p></div>
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Sprinter / Van</h3><p>14 guests · 14 bags. Crews and families, together.</p><p class="from">from $225<small>sample fare</small></p></div>
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Luxury Limo Bus</h3><p>25 guests · 25 bags. The party, in one vehicle.</p><p class="from">from $425<small>sample fare</small></p></div>
+    <div class="fleet-cell"><span class="ic"><svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg></span><h3>Executive Coach</h3><p>54 guests · 54 bags. Groups, teams, conventions.</p><p class="from">from $495<small>sample fare</small></p></div>
+  </div>
+</div></section>
+
+<!-- ================= CONTROL CENTER ================= -->
+<section class="block" id="control"><div class="wrap">
+  <p class="small" style="color:var(--brass-dk)">Control center &middot; dispatch, live</p>
+  <h2>One board runs the whole fleet.</h2>
+  <p class="lede">The third side of the system. Dispatch sees every chauffeur, every trip, and every new booking as it lands &mdash; and the board stays in sync with the rider and driver apps. Try it: book a trip in the phone above, and watch it appear in the queue below.</p>
+  <div class="cc" style="margin-top:28px">
+    <div class="cc-top">
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <b>Hy&rsquo;s Control Center</b><span style="color:var(--mut);font-size:13px">Dispatch · West Haven</span>
+      <span class="live">Live · <span id="ccClock">9:41 AM</span></span>
+    </div>
+    <div class="cc-body">
+      <aside class="cc-side" aria-label="Control center sections">
+        <button type="button" class="on">Dispatch<small>Live board</small></button>
+        <button type="button">Fleet<small>102 vehicles</small></button>
+        <button type="button">Chauffeurs<small>150+ on roster</small></button>
+        <button type="button">Bookings<small>Today &amp; ahead</small></button>
+        <button type="button">Payments<small>Receipts &amp; payouts</small></button>
+        <button type="button">Settings<small>Rates &amp; zones</small></button>
+      </aside>
+      <div class="cc-main">
+        <div class="kpis">
+          <div class="kpi"><b id="kpiActive">14</b><span>Active trips</span><small>6 en route · 5 on trip · 3 at pickup</small></div>
+          <div class="kpi"><b>32</b><span>Chauffeurs online</span><small>of 41 scheduled today</small></div>
+          <div class="kpi"><b>6 min</b><span>Avg pickup</span><small>across active trips</small></div>
+          <div class="kpi"><b>98%</b><span>On-time today</span><small>41 of 42 pickups on time</small></div>
+        </div>
+        <div class="cc-map">
+          <svg viewBox="0 0 900 360" role="img" aria-label="Live fleet map of the West Haven area">
+            <rect width="900" height="360" fill="#f3eddc"/>
+            <g stroke="#ddd3bd" stroke-width="16" stroke-linecap="round">
+              <path d="M-10 80 H910"/><path d="M-10 180 H910"/><path d="M-10 280 H910"/>
+              <path d="M150 -10 V370"/><path d="M380 -10 V370"/><path d="M620 -10 V370"/><path d="M790 -10 V370"/>
+            </g>
+            <g stroke="#c9bfa4" stroke-width="2">
+              <path d="M-10 130 H910"/><path d="M-10 230 H910"/><path d="M265 -10 V370"/><path d="M500 -10 V370"/><path d="M705 -10 V370"/>
+            </g>
+            <path d="M120 300 C 220 260, 300 220, 420 180 S 640 110, 760 70" fill="none" stroke="#a8842c" stroke-width="3" stroke-dasharray="8 7" id="ccRoute1"/>
+            <path d="M180 60 C 300 90, 420 150, 560 210 S 720 280, 820 310" fill="none" stroke="#a8842c" stroke-width="3" stroke-dasharray="8 7" id="ccRoute2"/>
+            <path d="M620 320 C 600 240, 560 170, 480 120 S 340 60, 260 40" fill="none" stroke="#a8842c" stroke-width="3" stroke-dasharray="8 7" id="ccRoute3"/>
+            <g font-family="Georgia,serif" font-size="13" fill="#6d6558">
+              <text x="20" y="72">Island Ln</text><text x="400" y="172">Boston Post Rd</text><text x="20" y="272">Saw Mill Rd</text><text x="700" y="60">JFK</text>
+            </g>
+            <g id="ccCar1"><circle r="10" fill="#171512" stroke="#d9b36a" stroke-width="2.5"/><text y="4" text-anchor="middle" font-size="10" font-weight="800" fill="#d9b36a">H</text></g>
+            <g id="ccCar2"><circle r="10" fill="#171512" stroke="#d9b36a" stroke-width="2.5"/><text y="4" text-anchor="middle" font-size="10" font-weight="800" fill="#d9b36a">H</text></g>
+            <g id="ccCar3"><circle r="10" fill="#171512" stroke="#d9b36a" stroke-width="2.5"/><text y="4" text-anchor="middle" font-size="10" font-weight="800" fill="#d9b36a">H</text></g>
+            <g><circle cx="760" cy="70" r="8" fill="#a8842c"/><circle cx="120" cy="300" r="8" fill="#171512"/></g>
+          </svg>
+        </div>
+        <div class="cc-cols">
+          <div class="cc-panel">
+            <h3>Active trips</h3>
+            <div class="filters" id="boardFilters">
+              <button class="chip-f on" type="button" data-filter="all">All</button>
+              <button class="chip-f" type="button" data-filter="En route">En route</button>
+              <button class="chip-f" type="button" data-filter="At pickup">At pickup</button>
+              <button class="chip-f" type="button" data-filter="On trip">On trip</button>
+              <button class="chip-f" type="button" data-filter="Scheduled">Scheduled</button>
+            </div>
+            <div id="boardList"></div>
+            <div class="detail" id="tripDetail" hidden>
+              <h4 id="tdTitle">HY-1042 · Alex M.</h4>
+              <p id="tdSub">West Haven → JFK · Daniel M. · Escalade</p>
+              <div class="row">
+                <button class="btn" type="button" id="tdMsg">Message chauffeur</button>
+                <button class="btn" type="button" id="tdReassign">Reassign</button>
+                <button class="btn go" type="button" id="tdCall">Call rider</button>
+              </div>
+            </div>
+            <h3 style="margin-top:20px">Incoming bookings — need a chauffeur</h3>
+            <div id="queueList"></div>
+          </div>
+          <div class="cc-panel">
+            <h3>Chauffeurs on shift</h3>
+            <div id="chaufList"></div>
+            <p style="font-size:12px;color:var(--mut);margin-top:12px">All names, trips, fares and ETAs are sample data for this preview.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= WHY ================= -->
+<section class="block"><div class="wrap">
+  <p class="small" style="color:var(--brass-dk)">Why rebuild</p>
+  <h2>Same destination. A better way to get there.</h2>
+  <div class="compare">
+    <div class="col old">
+      <h3>The app today</h3>
+      <ul>
+        <li>2.0&starf; from 8 App Store ratings</li>
+        <li>A generic white-label shell, unchanged since 2015</li>
+        <li>Booking still ends in a phone call</li>
+        <li>No fare shown before you commit</li>
+        <li>No live view of your chauffeur</li>
+      </ul>
+    </div>
+    <div class="col new">
+      <h3>This concept</h3>
+      <ul>
+        <li>Book in taps &mdash; &ldquo;without making a single phone call&rdquo;</li>
+        <li>Fare up front, on every car, no surge</li>
+        <li>Live chauffeur, car and plate on the map</li>
+        <li>Trips and receipts kept in one place</li>
+        <li>Hy&rsquo;s own voice: black, brass, and &ldquo;since 1951&rdquo;</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><b>Redesign concept &mdash; not affiliated with Hy&rsquo;s Limousine Worldwide or Livery Coach Solutions.</b> Company facts (founded 1951, West Haven HQ, fleet classes, airports, phones, email) are from hyslimo.com and the App Store listing. Chauffeur and rider names, fares, trips, times, the plate, dispatch board rows, and earnings are sample data for this preview; nothing here books, charges, assigns, or submits anything.</p>
+  <p>Concept preview built by Digital Deli &middot; Ride Hys on the App Store &middot; hyslimo.com &middot; 800-255-LIMO (5466)</p>
+</div></footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id)};
+var money=function(n){return "$"+n};
+
+/* ---------- Data (sample fares / demo content) ---------- */
+var CARS=[
+ {name:"Executive Sedan",desc:"Cadillac CT5 · the everyday executive ride",seats:3,bags:2,fare:145,eta:6},
+ {name:"Luxury SUV",desc:"Cadillac Escalade · room for the whole party",seats:6,bags:6,fare:185,eta:8},
+ {name:"Stretch Limousine",desc:"The classic · for the night itself",seats:8,bags:4,fare:295,eta:15},
+ {name:"Super Stretch Limousine",desc:"Weddings, proms, big nights out",seats:10,bags:6,fare:395,eta:20},
+ {name:"Sprinter / Van",desc:"Mercedes Sprinter · crews and families",seats:14,bags:14,fare:225,eta:12},
+ {name:"Luxury Limo Bus",desc:"The party, in one vehicle",seats:25,bags:25,fare:425,eta:25},
+ {name:"Executive Coach",desc:"Groups, teams, conventions",seats:54,bags:54,fare:495,eta:30}
+];
+var CAR_SVG='<svg width="30" height="20" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 13 L7 7 Q8 5 11 5 L20 5 Q23 5 25 8 L28 11 Q30 12 30 14 L30 15 L3 15 Z"/><circle cx="9" cy="15" r="2.4" fill="currentColor" stroke="none"/><circle cx="23" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg>';
+var state={car:0,when:"now",booked:false};
+var reduceMotion=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- Screens ---------- */
+var screens=["book","cars","review","live","trips","account","d-home","d-request","d-trip","d-trips","d-earn"];
+var mode="rider";
+function setMode(m){
+  mode=m;
+  $("modeRider").classList.toggle("on",m==="rider");
+  $("modeDriver").classList.toggle("on",m==="driver");
+  $("riderTabs").hidden=m!=="rider";
+  $("driverTabs").hidden=m!=="driver";
+  showScreen(m==="rider"?"book":"d-home");
+}
+$("modeRider").addEventListener("click",function(){setMode("rider")});
+$("modeDriver").addEventListener("click",function(){setMode("driver")});
+function showScreen(name){
+  screens.forEach(function(s){var el=$("screen-"+s);if(el)el.classList.toggle("active",s===name)});
+  document.querySelectorAll(".tabbar button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-goto")===name)});
+  var sc=$("screen-"+name);if(sc)sc.scrollTop=0;
+  if(name==="live")startRoute();else stopRoute();
+  if(name==="d-request")startReqCountdown();else stopReqCountdown();
+}
+document.querySelectorAll("[data-goto]").forEach(function(el){
+  el.addEventListener("click",function(){
+    var m=el.getAttribute("data-mode");
+    if(m&&m!==mode){setMode(m)}
+    showScreen(el.getAttribute("data-goto"));
+  });
+});
+
+/* ---------- Cars ---------- */
+function renderCars(){
+  var list=$("carList");list.innerHTML="";
+  CARS.forEach(function(c,i){
+    var b=document.createElement("button");
+    b.type="button";b.className="car-item"+(i===state.car?" sel":"");
+    b.innerHTML='<span class="ic" aria-hidden="true">'+CAR_SVG+'</span><span><span class="nm">'+c.name+'</span><br><span class="ds">'+c.desc+'<br>'+c.seats+' guests · '+c.bags+' bags · about '+c.eta+' min away</span></span><span class="fare">'+money(c.fare)+'<small>sample fare</small></span>';
+    b.addEventListener("click",function(){selectCar(i)});
+    list.appendChild(b);
+  });
+}
+function selectCar(i){
+  state.car=i;renderCars();updatePick();
+}
+function updatePick(){
+  var c=CARS[state.car];
+  $("pickCarName").textContent=c.name;
+  $("pickCarMeta").textContent=c.seats+" guests · "+c.bags+" bags · about "+c.eta+" min away";
+  $("pickCarFare").textContent=money(c.fare);
+  $("upAmt").textContent=money(c.fare);
+  $("upSub").textContent=c.name+" · Confirmed";
+}
+
+/* ---------- Book screen ---------- */
+$("seeCarsBtn").addEventListener("click",function(){showScreen("cars")});
+$("carPickBtn").addEventListener("click",function(){showScreen("cars")});
+$("continueBtn").addEventListener("click",function(){
+  var c=CARS[state.car];
+  $("revFrom").textContent=$("pickup").value||"Pickup";
+  $("revTo").textContent=$("dropoff").value||"Drop-off";
+  $("revCar").textContent=c.name;
+  $("revCap").textContent=c.seats+" / "+c.bags;
+  $("revTotal").textContent=money(c.fare);
+  $("reviewWhen").textContent=whenText();
+  showScreen("review");
+});
+function whenText(){
+  if(state.when==="now")return "Today · Now";
+  var d=$("tripDate").value,t=$("tripTime").value||"09:00";
+  if(!d)return "Scheduled";
+  var dt=new Date(d+"T"+t);
+  return dt.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})+" · "+dt.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
+}
+$("segNow").addEventListener("click",function(){state.when="now";$("segNow").classList.add("on");$("segLater").classList.remove("on");$("schedRow").hidden=true});
+$("segLater").addEventListener("click",function(){state.when="later";$("segLater").classList.add("on");$("segNow").classList.remove("on");$("schedRow").hidden=false});
+document.querySelectorAll("#airportChips .chip").forEach(function(ch){
+  ch.addEventListener("click",function(){
+    document.querySelectorAll("#airportChips .chip").forEach(function(x){x.classList.remove("on")});
+    ch.classList.add("on");$("dropoff").value=ch.getAttribute("data-airport");
+  });
+});
+/* default schedule date = tomorrow */
+(function(){var t=new Date();t.setDate(t.getDate()+1);$("tripDate").value=t.toISOString().slice(0,10)})();
+
+/* ---------- Confirm -> live ---------- */
+$("confirmBtn").addEventListener("click",function(){
+  state.booked=true;
+  var c=CARS[state.car];
+  $("liveTitle").textContent="Your chauffeur is on the way";
+  $("liveEta").textContent="Arriving in "+c.eta+" min";
+  $("liveEtaSub").textContent="Daniel M. · Black Cadillac Escalade · HYS·1951";
+  $("upWhen").innerHTML=state.when==="now"?"Today<br>Now":whenText().replace(" · ","<br>");
+  pushRiderBookingToQueue();
+  showScreen("live");
+});
+$("completeBtn").addEventListener("click",function(){
+  var c=CARS[state.car];
+  $("tripCompleteBanner").hidden=false;
+  $("rcRoute").textContent=shortRoute();
+  $("rcCar").textContent=c.name;
+  $("rcTotal").textContent=money(c.fare);
+  showScreen("trips");
+});
+function shortRoute(){
+  var a=($("pickup").value||"Pickup").split(",")[0];
+  var b=($("dropoff").value||"Drop-off").split(" —")[0].split(" Airport")[0];
+  return a+" → "+b;
+}
+
+/* ---------- Live map ---------- */
+var routeEl=$("routePath"),carEl=$("carDot"),rafId=null,tlTimers=[];
+function startRoute(){
+  if(!routeEl||!carEl)return;
+  stopRoute();
+  var len=routeEl.getTotalLength();
+  if(reduceMotion){var p=routeEl.getPointAtLength(len);carEl.setAttribute("transform","translate("+p.x+","+p.y+")");return}
+  var start=null,DUR=20000;
+  function frame(ts){
+    if(start===null)start=ts;
+    var t=Math.min((ts-start)/DUR,1);
+    var pt=routeEl.getPointAtLength(t*len);
+    carEl.setAttribute("transform","translate("+pt.x+","+pt.y+")");
+    if(t<1)rafId=requestAnimationFrame(frame);
+  }
+  rafId=requestAnimationFrame(frame);
+  /* timeline advances with the car */
+  var tl2=$("tl2"),tl3=$("tl3"),tl4=$("tl4");
+  [tl2,tl3,tl4].forEach(function(li){if(li){li.classList.remove("done","now")}});
+  if(tl2)tl2.classList.add("now");
+  tlTimers.push(setTimeout(function(){if(tl2){tl2.classList.remove("now");tl2.classList.add("done")}if(tl3)tl3.classList.add("now");$("liveEta").textContent="Arriving in 2 min"},9000));
+  tlTimers.push(setTimeout(function(){if(tl3){tl3.classList.remove("now");tl3.classList.add("done")}if(tl4)tl4.classList.add("now");$("liveEta").textContent="Your chauffeur has arrived";$("liveTitle").textContent="Your chauffeur has arrived"},18000));
+}
+function stopRoute(){if(rafId)cancelAnimationFrame(rafId);rafId=null;tlTimers.forEach(clearTimeout);tlTimers=[]}
+$("replayBtn").addEventListener("click",function(){startRoute()});
+
+/* ---------- Driver app ---------- */
+$("onlineToggle").addEventListener("click",function(){
+  var on=this.classList.toggle("on");
+  this.setAttribute("aria-checked",on?"true":"false");
+  $("onlineLabel").textContent=on?"You’re online":"You’re offline";
+  $("onlineSub").textContent=on?"New trips can reach you":"You won’t receive requests";
+});
+var reqTimer=null,reqLeft=20;
+function startReqCountdown(){
+  stopReqCountdown();reqLeft=20;tickReq();
+  reqTimer=setInterval(function(){reqLeft--;if(reqLeft<=0){stopReqCountdown();$("reqNote").textContent="Request expired — it went to the next chauffeur.";showScreen("d-home")}else tickReq()},1000);
+}
+function tickReq(){var el=$("reqCount");if(el)el.textContent="0:"+("0"+reqLeft).slice(-2)}
+function stopReqCountdown(){if(reqTimer)clearInterval(reqTimer);reqTimer=null}
+$("simRequestBtn").addEventListener("click",function(){showScreen("d-request")});
+$("declineBtn").addEventListener("click",function(){$("reqNote").textContent="Declined — dispatch offered it to the next chauffeur.";showScreen("d-home")});
+$("acceptBtn").addEventListener("click",function(){
+  stopReqCountdown();
+  acceptDispatchBooking();
+  $("dTripTitle").textContent="Active trip · HY-1049";
+  $("dTripEta").textContent="Pickup in 6 min";
+  resetDTrip();
+  showScreen("d-trip");
+});
+$("msgRiderBtn").addEventListener("click",function(){
+  this.textContent="Message sent ✓";
+  var b=this;setTimeout(function(){b.textContent="Message"},1800);
+});
+var dStep=0;
+function resetDTrip(){
+  dStep=0;
+  ["ds1","ds2","ds3"].forEach(function(id,i){var li=$(id);li.classList.toggle("now",i===0);li.classList.remove("done")});
+  $("dNextBtn").textContent="Arrived at pickup";
+  $("dTripNote").textContent="Dispatch sees every step as it happens.";
+}
+$("dNextBtn").addEventListener("click",function(){
+  dStep++;
+  if(dStep===1){
+    $("ds1").classList.remove("now");$("ds1").classList.add("done");
+    $("ds2").classList.add("now");
+    $("dTripEta").textContent="Rider on board";
+    this.textContent="Start trip to JFK";
+    setBoardStatus("HY-1049","On trip");
+  }else if(dStep===2){
+    $("ds2").classList.remove("now");$("ds2").classList.add("done");
+    $("ds3").classList.add("now");
+    $("dTripEta").textContent="On trip · about 58 min";
+    this.textContent="Complete trip";
+    setBoardStatus("HY-1049","On trip");
+  }else{
+    $("ds3").classList.remove("now");$("ds3").classList.add("done");
+    $("dTripEta").textContent="Trip complete";
+    $("dTripNote").textContent="$145 added to today’s earnings.";
+    this.textContent="Trip complete ✓";
+    this.disabled=true;
+    completeDispatchTrip("HY-1049");
+    $("statTrips").textContent="7";
+    $("statEarn").textContent="$557";
+    var et=$("earnToday");if(et)et.textContent="$557";
+    var sub=$("dTripRowSub");if(sub)sub.textContent="Executive Sedan · Completed";
+    var b=this;setTimeout(function(){b.disabled=false;resetDTrip();showScreen("d-trips")},1200);
+  }
+});
+
+/* ---------- Control Center (dispatch) — sample data ---------- */
+var boardTrips=[
+ {id:"HY-1042",rider:"Alex M.",route:"West Haven → JFK",driver:"Daniel M.",car:"Escalade",status:"On trip",eta:"42 min left",fare:145},
+ {id:"HY-1043",rider:"Priya S.",route:"Greenwich → LaGuardia",driver:"Marcus T.",car:"Sedan",status:"En route",eta:"8 min to pickup",fare:132},
+ {id:"HY-1044",rider:"Jordan L.",route:"Hartford → Bradley",driver:"Elena R.",car:"SUV",status:"At pickup",eta:"Rider boarding",fare:118},
+ {id:"HY-1045",rider:"Sam K.",route:"New Haven → Newark",driver:"David O.",car:"Stretch",status:"Scheduled",eta:"4:15 PM pickup",fare:295},
+ {id:"HY-1046",rider:"Mia R.",route:"Stamford → Westchester",driver:"Sofia L.",car:"Sprinter",status:"En route",eta:"12 min to pickup",fare:225}
+];
+var queueTrips=[
+ {id:"HY-1047",rider:"Taylor B.",route:"Fairfield → JFK",car:"Executive Sedan",when:"Now",fare:148},
+ {id:"HY-1048",rider:"Noah W.",route:"West Haven → Newark",car:"Luxury SUV",when:"3:45 PM",fare:172}
+];
+var chauffeurs=[
+ {name:"Daniel M.",car:"Escalade",status:"On trip",trips:6},
+ {name:"Marcus T.",car:"Sedan",status:"En route",trips:5},
+ {name:"Elena R.",car:"SUV",status:"At pickup",trips:4},
+ {name:"Sofia L.",car:"Sprinter",status:"En route",trips:3},
+ {name:"David O.",car:"Stretch",status:"Scheduled",trips:2},
+ {name:"James P.",car:"Sedan",status:"Online",trips:0},
+ {name:"Ana G.",car:"SUV",status:"Online",trips:0},
+ {name:"Robert K.",car:"Coach",status:"Off",trips:0}
+];
+var boardFilter="all",selectedTrip=null,assignIdx=0;
+function pillFor(s){
+  if(s==="On trip")return '<span class="pill ok">On trip</span>';
+  if(s==="En route")return '<span class="pill warn">En route</span>';
+  if(s==="At pickup")return '<span class="pill warn">At pickup</span>';
+  if(s==="Scheduled")return '<span class="pill dim">Scheduled</span>';
+  if(s==="Completed")return '<span class="pill ok">Completed</span>';
+  return '<span class="pill dim">'+s+'</span>';
+}
+function renderBoard(){
+  var list=$("boardList");list.innerHTML="";
+  var shown=boardTrips.filter(function(t){return boardFilter==="all"||t.status===boardFilter});
+  if(!shown.length){list.innerHTML='<p style="color:var(--mut);font-size:14px">No trips with this status right now.</p>'}
+  shown.forEach(function(t){
+    var b=document.createElement("button");
+    b.type="button";b.className="board-row"+(selectedTrip===t.id?" sel":"");
+    b.innerHTML='<span class="id">'+t.id+'</span><span><span class="rt">'+t.rider+' · '+t.route+'</span><br><span class="sb">'+t.driver+' · '+t.car+' · $'+t.fare+'</span></span><span class="st">'+pillFor(t.status)+'<span class="eta">'+t.eta+'</span></span>';
+    b.addEventListener("click",function(){selectTrip(t.id)});
+    list.appendChild(b);
+  });
+  var k=$("kpiActive");if(k)k.textContent=String(boardTrips.filter(function(t){return t.status!=="Completed"}).length+9);
+}
+function renderQueue(){
+  var list=$("queueList");list.innerHTML="";
+  if(!queueTrips.length){list.innerHTML='<p style="color:var(--mut);font-size:14px">Queue clear — every booking has a chauffeur.</p>';return}
+  queueTrips.forEach(function(q){
+    var row=document.createElement("div");
+    row.className="board-row";row.style.cursor="default";
+    row.innerHTML='<span class="id">'+q.id+'</span><span><span class="rt">'+q.rider+' · '+q.route+'</span><br><span class="sb">'+q.car+' · '+q.when+' · $'+q.fare+'</span></span><span class="st"><button class="chip-f" type="button">Assign</button></span>';
+    row.querySelector("button").addEventListener("click",function(){assignQueue(q.id)});
+    list.appendChild(row);
+  });
+}
+function renderChauffeurs(){
+  var list=$("chaufList");list.innerHTML="";
+  chauffeurs.forEach(function(c){
+    var d=document.createElement("div");d.className="chauf";
+    var pill=c.status==="Off"?'<span class="pill dim">Off</span>':(c.status==="Online"?'<span class="pill ok">Online</span>':'<span class="pill warn">'+c.status+'</span>');
+    d.innerHTML='<span class="av">'+c.name.split(" ").map(function(w){return w[0]}).join("")+'</span><span><span class="nm">'+c.name+'</span><br><span class="sb">'+c.car+' · '+c.trips+' trips today</span></span>'+pill;
+    list.appendChild(d);
+  });
+}
+function selectTrip(id){
+  selectedTrip=id;
+  var t=boardTrips.find(function(x){return x.id===id});
+  if(!t)return;
+  $("tdTitle").textContent=t.id+" · "+t.rider;
+  $("tdSub").textContent=t.route+" · "+t.driver+" · "+t.car+" · $"+t.fare+" · "+t.eta;
+  $("tripDetail").hidden=false;
+  renderBoard();
+}
+function assignQueue(id){
+  var i=queueTrips.findIndex(function(q){return q.id===id});
+  if(i<0)return;
+  var q=queueTrips.splice(i,1)[0];
+  var avail=chauffeurs.filter(function(c){return c.status==="Online"});
+  var driver=avail.length?avail[assignIdx%avail.length]:chauffeurs[0];
+  assignIdx++;
+  if(driver.status==="Online")driver.status="En route";
+  boardTrips.unshift({id:q.id,rider:q.rider,route:q.route,driver:driver.name,car:q.car,status:"En route",eta:"On the way to pickup",fare:q.fare});
+  renderQueue();renderBoard();renderChauffeurs();
+  selectTrip(q.id);
+}
+function setBoardStatus(id,status){
+  var t=boardTrips.find(function(x){return x.id===id});
+  if(t){t.status=status;renderBoard()}
+}
+function completeDispatchTrip(id){
+  var i=boardTrips.findIndex(function(x){return x.id===id});
+  if(i>=0){boardTrips.splice(i,1)}
+  renderBoard();
+}
+function acceptDispatchBooking(){
+  var i=queueTrips.findIndex(function(q){return q.id==="HY-1049"});
+  if(i<0)return;
+  var q=queueTrips.splice(i,1)[0];
+  boardTrips.unshift({id:q.id,rider:q.rider,route:q.route,driver:"Daniel M.",car:q.car,status:"En route",eta:"6 min to pickup",fare:q.fare});
+  renderQueue();renderBoard();
+}
+function pushRiderBookingToQueue(){
+  if(queueTrips.some(function(q){return q.id==="HY-1049"}))return;
+  var c=CARS[state.car];
+  queueTrips.unshift({id:"HY-1049",rider:"Alex M.",route:shortRoute().replace(" → "," → "),car:c.name,when:state.when==="now"?"Now":whenText(),fare:c.fare});
+  renderQueue();
+}
+document.querySelectorAll("#boardFilters .chip-f").forEach(function(ch){
+  ch.addEventListener("click",function(){
+    document.querySelectorAll("#boardFilters .chip-f").forEach(function(x){x.classList.remove("on")});
+    ch.classList.add("on");boardFilter=ch.getAttribute("data-filter");renderBoard();
+  });
+});
+$("tdMsg").addEventListener("click",function(){var b=this;b.textContent="Message sent ✓";setTimeout(function(){b.textContent="Message chauffeur"},1800)});
+$("tdReassign").addEventListener("click",function(){
+  if(!selectedTrip)return;
+  var t=boardTrips.find(function(x){return x.id===selectedTrip});if(!t)return;
+  var avail=chauffeurs.filter(function(c){return c.status==="Online"||c.status==="En route"});
+  var next=avail[(avail.findIndex(function(c){return c.name===t.driver})+1)%avail.length]||avail[0];
+  if(next){t.driver=next.name;renderBoard();selectTrip(t.id)}
+});
+$("tdCall").addEventListener("click",function(){var b=this;b.textContent="Calling rider… (demo)";setTimeout(function(){b.textContent="Call rider"},1800)});
+/* control-center clock */
+function tickClock(){var el=$("ccClock");if(el)el.textContent=new Date().toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"})}
+tickClock();setInterval(tickClock,30000);
+/* control-center map: three cars looping their routes */
+(function(){
+  var routes=[["ccRoute1","ccCar1",26000,0],["ccRoute2","ccCar2",32000,9000],["ccRoute3","ccCar3",30000,18000]];
+  if(reduceMotion){routes.forEach(function(r){var p=$(r[0]),c=$(r[1]);if(p&&c){var pt=p.getPointAtLength(p.getTotalLength());c.setAttribute("transform","translate("+pt.x+","+pt.y+")")}});return}
+  routes.forEach(function(r){
+    var path=$(r[0]),car=$(r[1]),dur=r[2],off=r[3];
+    if(!path||!car)return;
+    var len=path.getTotalLength(),start=null;
+    function frame(ts){
+      if(start===null)start=ts-off;
+      var t=((ts-start)%dur)/dur;
+      var pt=path.getPointAtLength(t*len);
+      car.setAttribute("transform","translate("+pt.x+","+pt.y+")");
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  });
+})();
+
+renderBoard();renderQueue();renderChauffeurs();renderCars();updatePick();
+})();
+</script>
+</body>
+</html>
